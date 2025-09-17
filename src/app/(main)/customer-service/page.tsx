@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/accordion";
 import { contacts, faqs } from '@/lib/data';
 import { Mail, Phone } from 'lucide-react';
-import FeedbackForm from '@/components/feedback-form';
 
 export default function CustomerServicePage() {
   return (
@@ -22,7 +21,7 @@ export default function CustomerServicePage() {
 
       <div className="grid gap-8 lg:grid-cols-2">
         {/* Contact List */}
-        <Card>
+        <Card className="lg:col-span-1">
           <CardHeader>
             <CardTitle>Contact Information</CardTitle>
             <CardDescription>
@@ -48,11 +47,6 @@ export default function CustomerServicePage() {
             ))}
           </CardContent>
         </Card>
-
-        {/* Feedback Form */}
-        <div className="row-span-2">
-          <FeedbackForm />
-        </div>
 
         {/* FAQ Section */}
         <Card className="lg:col-span-1">
