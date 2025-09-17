@@ -28,7 +28,7 @@ export default function LoginPage() {
     <div className="flex flex-col items-center gap-6">
       <div className="flex items-center gap-2 text-2xl font-bold text-primary">
         <Image
-          src="/NNMTlogo.jpg"
+          src="/NMMTlogo.jpg"
           alt="NMMT Logo"
           width={40}
           height={40}

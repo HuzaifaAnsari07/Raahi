@@ -20,7 +20,7 @@ export default function AppHeader() {
         <SidebarTrigger className="md:hidden" />
         <Link href="/dashboard" className="hidden items-center gap-2 font-bold text-primary md:flex">
           <Image
-            src="/NNMTlogo.jpg"
+            src="/NMMTlogo.jpg"
             alt="NMMT Logo"
             width={32}
             height={32}

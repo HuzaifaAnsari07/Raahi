@@ -41,7 +41,7 @@ export default function AppSidebar() {
         <div className="flex items-center gap-2">
           <div className="flex h-10 w-10 items-center justify-center rounded-lg text-primary-foreground">
             <Image
-              src="/NNMTlogo.jpg"
+              src="/NMMTlogo.jpg"
               alt="NMMT Logo"
               width={32}
               height={32}
