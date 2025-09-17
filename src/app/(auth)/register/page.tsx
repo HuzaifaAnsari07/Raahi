@@ -1,6 +1,5 @@
 'use client';
 
-import { BusIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -12,6 +11,7 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -27,7 +27,13 @@ export default function RegisterPage() {
   return (
     <div className="flex flex-col items-center gap-6">
        <div className="flex items-center gap-2 text-2xl font-bold text-primary">
-        <BusIcon className="h-8 w-8" />
+        <Image
+          src="/NNMTlogo.jpg"
+          alt="NMMT Logo"
+          width={40}
+          height={40}
+          className="h-8 w-8"
+        />
         <h1 className="font-headline">NMMT Tracker</h1>
       </div>
       <Card className="w-full max-w-sm">

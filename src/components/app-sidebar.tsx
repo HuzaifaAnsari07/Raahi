@@ -10,7 +10,6 @@ import {
   SidebarMenuButton,
   SidebarMenuBadge,
 } from '@/components/ui/sidebar';
-import { BusIcon } from './icons';
 import {
   LayoutDashboard,
   Ticket,
@@ -23,6 +22,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Separator } from './ui/separator';
+import Image from 'next/image';
 
 const user = {
     name: "Passenger",
@@ -40,7 +40,13 @@ export default function AppSidebar() {
       <SidebarHeader>
         <div className="flex items-center gap-2">
           <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-            <BusIcon className="h-6 w-6" />
+            <Image
+              src="/NNMTlogo.jpg"
+              alt="NMMT Logo"
+              width={32}
+              height={32}
+              className="h-6 w-6 rounded-sm"
+            />
           </div>
           <span className="font-headline text-lg font-bold">NMMT Tracker</span>
         </div>

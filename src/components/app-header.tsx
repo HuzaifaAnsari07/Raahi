@@ -9,9 +9,9 @@ import {
 import { Button } from './ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { SidebarTrigger } from './ui/sidebar';
-import { BusIcon } from './icons';
 import Link from 'next/link';
 import { LogOut, User, LayoutDashboard } from 'lucide-react';
+import Image from 'next/image';
 
 export default function AppHeader() {
   return (
@@ -19,7 +19,13 @@ export default function AppHeader() {
       <div className="flex items-center gap-2">
         <SidebarTrigger className="md:hidden" />
         <Link href="/dashboard" className="hidden items-center gap-2 font-bold text-primary md:flex">
-          <BusIcon className="h-6 w-6" />
+          <Image
+            src="/NNMTlogo.jpg"
+            alt="NMMT Logo"
+            width={32}
+            height={32}
+            className="h-6 w-6"
+          />
           <span className="font-headline text-lg">NMMT Tracker</span>
         </Link>
       </div>
