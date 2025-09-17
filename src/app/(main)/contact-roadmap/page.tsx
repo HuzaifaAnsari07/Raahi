@@ -16,7 +16,7 @@ export default function ContactRoadmapPage() {
               <Image
                 src="/roadmap.png"
                 alt="Organizational Chart"
-                layout="fill"
+                fill
                 objectFit="contain"
               />
             </div>
