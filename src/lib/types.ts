@@ -32,3 +32,23 @@ export type Booking = {
 };
 
 export type UserRole = 'passenger' | 'admin';
+
+export type Contact = {
+  id: string;
+  name: string;
+  designation: string;
+  email: string;
+  mobile: string;
+};
+
+export type Alert = {
+  id: string;
+  message: string;
+  type: 'info' | 'warning' | 'danger';
+};
+
+export type FAQ = {
+  id: string;
+  question: string;
+  answer: string;
+};

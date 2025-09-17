@@ -1,3 +1,4 @@
+import AlertsBanner from '@/components/alerts-banner';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -15,6 +16,7 @@ import OccupancyPredictor from '@/components/occupancy-predictor';
 export default function DashboardPage() {
   return (
     <div className="flex flex-col gap-8">
+      <AlertsBanner />
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Available Buses</h1>
         <p className="text-muted-foreground">

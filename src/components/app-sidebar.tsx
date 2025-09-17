@@ -15,8 +15,10 @@ import {
   Ticket,
   Map,
   ShieldCheck,
-  LogOut,
   User,
+  FileText,
+  LifeBuoy,
+  Phone,
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -91,6 +93,56 @@ export default function AppSidebar() {
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
+          
+          <SidebarMenuItem>
+            <SidebarMenuButton
+              asChild
+              isActive={isActive('/customer-service')}
+              tooltip="Support"
+            >
+              <Link href="/customer-service">
+                <LifeBuoy />
+                <span>Customer Service</span>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+           <SidebarMenuItem>
+            <SidebarMenuButton
+              asChild
+              isActive={isActive('/contact-list')}
+              tooltip="Contacts"
+            >
+              <Link href="/contact-list">
+                <Phone />
+                <span>Contact List</span>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+          <SidebarMenuItem>
+            <SidebarMenuButton
+              asChild
+              isActive={isActive('/contact-roadmap')}
+              tooltip="Roadmap"
+            >
+              <Link href="/contact-roadmap">
+                <FileText />
+                <span>Contact Roadmap</span>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+           <SidebarMenuItem>
+            <SidebarMenuButton
+              asChild
+              isActive={isActive('/feedback')}
+              tooltip="Feedback"
+            >
+              <Link href="/feedback">
+                <LifeBuoy />
+                <span>Feedback</span>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+
           {user.role === 'admin' && (
              <SidebarMenuItem>
               <SidebarMenuButton

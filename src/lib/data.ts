@@ -1,4 +1,4 @@
-import type { Stop, Route, Bus, Booking } from './types';
+import type { Stop, Route, Bus, Booking, Contact, Alert, FAQ } from './types';
 
 export const stops: Stop[] = [
   { id: 'stop-1', name: 'Vashi Bus Stn', time: '08:00' },
@@ -56,4 +56,40 @@ export const bookings: Booking[] = [
         passengerName: 'Jane Doe',
         qrData: '{"bookingId":"booking-1","bus":"MH-43-1234","route":"Route 10: Vashi to CBD Belapur","from":"Vashi Bus Stn","to":"Nerul LP","time":"Tue, Jul 23, 2024, 10:30 AM"}'
     }
+];
+
+export const contacts: Contact[] = [
+  { id: '1', name: 'Mr. John Doe', designation: 'Transport Manager', email: 'manager@nmmt.com', mobile: '9876543210' },
+  { id: '2', name: 'Ms. Jane Smith', designation: 'Customer Support Head', email: 'support@nmmt.com', mobile: '9876543211' },
+  { id: '3', name: 'Mr. Alex Johnson', designation: 'Route In-charge (Vashi)', email: 'vashi.route@nmmt.com', mobile: '9876543212' },
+  { id: '4', name: 'Ms. Priya Singh', designation: 'Route In-charge (Thane)', email: 'thane.route@nmmt.com', mobile: '9876543213' },
+];
+
+export const alerts: Alert[] = [
+    { id: 'alert-1', message: 'Bus number MH-43-1234 on Route 10 is delayed by 15 minutes due to traffic.', type: 'warning' },
+    { id: 'alert-2', message: 'Route 45 towards Thane will be diverted via Airoli Circle from 2 PM to 5 PM today.', type: 'danger' },
+    { id: 'alert-3', message: 'Weekend special services are now available for all major routes. Check the schedule.', type: 'info' }
+];
+
+export const faqs: FAQ[] = [
+  {
+    id: 'faq-1',
+    question: 'Where is my bus right now?',
+    answer: 'You can track your bus in real-time by clicking the "Track" button on the dashboard for your selected bus. This will open a live map showing the bus\'s current location.'
+  },
+  {
+    id: 'faq-2',
+    question: 'How do I book a ticket?',
+    answer: 'On the dashboard, find your desired bus and click the "Book Ticket" button. You will be taken to a page where you can select your boarding and destination stops to confirm your booking.'
+  },
+  {
+    id: 'faq-3',
+    question: 'What is the helpline number?',
+    answer: 'Our customer service helpline number is 9876543211. You can also find other contact details on our "Contact List" page.'
+  },
+  {
+    id: 'faq-4',
+    question: 'How can I give feedback?',
+    answer: 'We value your feedback! Please visit the "Feedback" page from the sidebar menu to submit your comments or suggestions using our feedback form.'
+  }
 ];

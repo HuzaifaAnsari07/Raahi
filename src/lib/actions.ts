@@ -52,3 +52,19 @@ export async function createBooking(data: z.infer<typeof bookingSchema>) {
 
   return newBookingId;
 }
+
+const feedbackSchema = z.object({
+  name: z.string().min(1, 'Name is required.'),
+  email: z.string().email('Invalid email address.'),
+  busNumber: z.string().optional(),
+  message: z.string().min(10, 'Feedback message must be at least 10 characters.'),
+});
+
+export async function submitFeedback(data: z.infer<typeof feedbackSchema>) {
+  const validatedData = feedbackSchema.parse(data);
+
+  // In a real app, you would save this to the 'feedback' collection in Firestore
+  console.log('New feedback submitted:', validatedData);
+
+  return { success: true, message: 'Thank you for your feedback!' };
+}
