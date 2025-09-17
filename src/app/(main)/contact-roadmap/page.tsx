@@ -14,7 +14,7 @@ export default function ContactRoadmapPage() {
           <ScrollArea className="h-[600px] w-full rounded-md border p-4">
             <div className="relative min-w-[1200px] h-[800px]">
               <Image
-                src="/roadmap.png"
+                src="/contact%20roadmap.png"
                 alt="Organizational Chart"
                 fill
                 objectFit="contain"
