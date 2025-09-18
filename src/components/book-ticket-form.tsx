@@ -29,6 +29,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { useToast } from '@/hooks/use-toast';
 
 const bookingSchema = z.object({
   fromStop: z.string().min(1, 'Please select a boarding stop.'),
@@ -43,6 +44,7 @@ export default function BookTicketForm({
   route: Route;
 }) {
   const router = useRouter();
+  const { toast } = useToast();
 
   const form = useForm<z.infer<typeof bookingSchema>>({
     resolver: zodResolver(bookingSchema),
@@ -55,10 +57,18 @@ export default function BookTicketForm({
   const onSubmit = async (data: z.infer<typeof bookingSchema>) => {
     try {
       const bookingId = await createBooking({ ...data, busId: bus.id });
+      toast({
+        title: 'Booking Successful!',
+        description: 'Redirecting to your e-ticket...',
+      });
       router.push(`/booking-confirmation/${bookingId}`);
     } catch (error) {
       console.error('Booking failed', error);
-      // Here you would show a toast notification
+      toast({
+        variant: 'destructive',
+        title: 'Booking Failed',
+        description: 'There was an error creating your booking. Please try again.',
+      });
     }
   };
 
@@ -127,8 +137,8 @@ export default function BookTicketForm({
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full">
-              Confirm Booking (Dummy Pay)
+            <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
+              {form.formState.isSubmitting ? 'Confirming...' : 'Confirm Booking (Dummy Pay)'}
             </Button>
           </form>
         </Form>

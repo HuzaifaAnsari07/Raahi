@@ -53,7 +53,7 @@ export const bookings: Booking[] = [
         fromStop: 'Vashi Bus Stn',
         toStop: 'Nerul LP',
         bookingTime: 'Tue, Jul 23, 2024, 10:30 AM',
-        passengerName: 'Jane Doe',
+        passengerName: 'Passenger',
         qrData: '{"bookingId":"booking-1","bus":"MH-43-1234","route":"Route 10: Vashi to CBD Belapur","from":"Vashi Bus Stn","to":"Nerul LP","time":"Tue, Jul 23, 2024, 10:30 AM"}'
     }
 ];

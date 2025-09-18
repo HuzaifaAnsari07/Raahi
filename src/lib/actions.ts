@@ -36,7 +36,7 @@ export async function createBooking(data: z.infer<typeof bookingSchema>) {
     fromStop: fromStop.name,
     toStop: toStop.name,
     bookingTime: bookingTime,
-    passengerName: "John Doe", // Mock data
+    passengerName: "Passenger", // Mock data
     qrData: JSON.stringify({
         bookingId: newBookingId,
         bus: bus.busNumber,
