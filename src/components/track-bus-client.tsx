@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Map from '@/components/map';
 import {
   Card,
   CardContent,
@@ -22,15 +21,11 @@ type TrackBusClientProps = {
 };
 
 export default function TrackBusClient({ bus, route, busImage }: TrackBusClientProps) {
-  // Simulate real-time bus position
-  const [busPosition, setBusPosition] = useState({ lat: 19.076, lng: 72.8777 });
-
+  // Simulate real-time bus data updates
   useEffect(() => {
     const interval = setInterval(() => {
-      setBusPosition((prev) => ({
-        lat: prev.lat + (Math.random() - 0.5) * 0.001,
-        lng: prev.lng + (Math.random() - 0.5) * 0.001,
-      }));
+      // In a real app, you would fetch new bus data here.
+      // For this mock, we don't need to do anything.
     }, 3000); // Update every 3 seconds
 
     return () => clearInterval(interval);
@@ -38,8 +33,22 @@ export default function TrackBusClient({ bus, route, busImage }: TrackBusClientP
 
   return (
     <div className="grid h-full grid-cols-1 gap-6 lg:grid-cols-3">
-      <div className="lg:col-span-2 h-[400px] lg:h-auto rounded-lg overflow-hidden">
-        <Map busPosition={busPosition} />
+      <div className="lg:col-span-2 h-[400px] lg:h-auto rounded-lg overflow-hidden relative">
+        <Image
+          src="https://picsum.photos/seed/map1/1200/800"
+          alt="Map showing bus location"
+          fill
+          className="object-cover"
+          data-ai-hint="map satellite"
+        />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <div className='w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-lg border-2 border-background animate-pulse'>
+                <BusIcon className='w-6 h-6 text-primary-foreground' />
+            </div>
+        </div>
+        <div className="absolute bottom-4 left-4 bg-background/80 p-2 rounded-lg text-xs shadow-md backdrop-blur-sm">
+          Live map requires a Google Maps API key. This is a static placeholder.
+        </div>
       </div>
       <div className="flex flex-col gap-6">
         <Card>
