@@ -87,7 +87,7 @@ export default function AppSidebar() {
               isActive={isActive('/booking-confirmation')}
               tooltip="My Tickets"
             >
-              <Link href="/booking-confirmation/booking-1">
+              <Link href="/booking-confirmation?passengerName=Passenger&bookingTime=Tue%2C%20Jul%2023%2C%202024%2C%2010%3A30%20AM&busNumber=MH-43-1234&routeName=Route%2010%3A%20Vashi%20to%20CBD%20Belapur&fromStop=Vashi%20Bus%20Stn&toStop=Nerul%20LP">
                 <Ticket />
                 <span>My Tickets</span>
                 <SidebarMenuBadge>3</SidebarMenuBadge>

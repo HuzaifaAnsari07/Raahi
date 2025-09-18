@@ -1,24 +1,31 @@
+'use client';
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { bookings, busRoutes, buses, stops } from "@/lib/data";
+import { Separator } from "@/components/ui/separator";
+import { stops } from "@/lib/data";
 import { Bus, Clock, Ticket, User, MapPin, ArrowRight } from "lucide-react";
 import Image from "next/image";
-import { Separator } from "@/components/ui/separator";
+import { useSearchParams } from "next/navigation";
 
-export default function BookingConfirmationPage({ params }: { params: { bookingId: string } }) {
-  const booking = bookings.find(b => b.id === params.bookingId);
+export default function BookingConfirmationPage() {
+  const searchParams = useSearchParams();
 
-  if (!booking) {
-    return (
-      <Card>
-        <CardHeader>
-          <CardTitle>Booking Not Found</CardTitle>
-          <CardDescription>We couldn't find a booking with that ID.</CardDescription>
-        </CardHeader>
-      </Card>
-    )
-  }
+  const booking = {
+    passengerName: searchParams.get('passengerName') || 'Passenger',
+    bookingTime: searchParams.get('bookingTime') || new Date().toLocaleString(),
+    busNumber: searchParams.get('busNumber') || 'N/A',
+    routeName: searchParams.get('routeName') || 'N/A',
+    fromStop: searchParams.get('fromStop') || 'N/A',
+    toStop: searchParams.get('toStop') || 'N/A',
+  };
 
-  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=${encodeURIComponent(booking.qrData)}`;
+  const bookingId = `booking-${Math.random().toString(36).substr(2, 9)}`;
+
+  const qrData = JSON.stringify({
+    bookingId,
+    ...booking,
+  });
+  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=${encodeURIComponent(qrData)}`;
 
   return (
     <div className="flex flex-col gap-6 items-center">

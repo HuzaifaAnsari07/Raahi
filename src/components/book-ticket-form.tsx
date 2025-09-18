@@ -23,8 +23,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { createBooking } from '@/lib/actions';
-import { Bus, Route } from '@/lib/types';
+import { stops } from '@/lib/data';
+import type { Bus, Route } from '@/lib/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -54,22 +54,36 @@ export default function BookTicketForm({
     },
   });
 
-  const onSubmit = async (data: z.infer<typeof bookingSchema>) => {
-    try {
-      const bookingId = await createBooking({ ...data, busId: bus.id });
-      toast({
-        title: 'Booking Successful!',
-        description: 'Redirecting to your e-ticket...',
-      });
-      router.push(`/booking-confirmation/${bookingId}`);
-    } catch (error) {
-      console.error('Booking failed', error);
+  const onSubmit = (data: z.infer<typeof bookingSchema>) => {
+    const fromStop = stops.find((s) => s.id === data.fromStop);
+    const toStop = stops.find((s) => s.id === data.toStop);
+
+    if (!fromStop || !toStop) {
       toast({
         variant: 'destructive',
-        title: 'Booking Failed',
-        description: 'There was an error creating your booking. Please try again.',
+        title: 'Invalid Stops',
+        description: 'Please select valid boarding and destination stops.',
       });
+      return;
     }
+
+    const bookingDetails = {
+      passengerName: 'Passenger', // Mock data
+      bookingTime: new Date().toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' }),
+      busNumber: bus.busNumber,
+      routeName: route.name,
+      fromStop: fromStop.name,
+      toStop: toStop.name,
+    };
+
+    const queryParams = new URLSearchParams(bookingDetails);
+    
+    toast({
+      title: 'Booking Successful!',
+      description: 'Redirecting to your e-ticket...',
+    });
+    
+    router.push(`/booking-confirmation?${queryParams.toString()}`);
   };
 
   return (

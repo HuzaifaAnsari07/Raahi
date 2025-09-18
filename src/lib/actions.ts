@@ -11,6 +11,10 @@ const bookingSchema = z.object({
 });
 
 export async function createBooking(data: z.infer<typeof bookingSchema>) {
+  // This function is no longer used for the primary booking flow to avoid "Booking not found" errors
+  // in a stateless mock environment. The logic has been moved to the client-side in `book-ticket-form.tsx`.
+  // It is kept here for reference or future database integration.
+  
   const validatedData = bookingSchema.parse(data);
   const bus = buses.find((b) => b.id === validatedData.busId);
   const route = busRoutes.find((r) => r.id === bus?.routeId);
