@@ -19,6 +19,7 @@ import {
   FileText,
   LifeBuoy,
   Phone,
+  MessageSquare,
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -83,7 +84,7 @@ export default function AppSidebar() {
           <SidebarMenuItem>
             <SidebarMenuButton
               asChild
-              isActive={isActive('/book')}
+              isActive={isActive('/booking-confirmation')}
               tooltip="My Tickets"
             >
               <Link href="/booking-confirmation/booking-1">
@@ -137,7 +138,7 @@ export default function AppSidebar() {
               tooltip="Feedback"
             >
               <Link href="/feedback">
-                <LifeBuoy />
+                <MessageSquare />
                 <span>Feedback</span>
               </Link>
             </SidebarMenuButton>

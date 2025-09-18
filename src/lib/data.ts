@@ -59,10 +59,10 @@ export const bookings: Booking[] = [
 ];
 
 export const contacts: Contact[] = [
-  { id: '1', name: 'Mr. John Doe', designation: 'Transport Manager', email: 'manager@nmmt.com', mobile: '9876543210' },
-  { id: '2', name: 'Ms. Jane Smith', designation: 'Customer Support Head', email: 'support@nmmt.com', mobile: '9876543211' },
-  { id: '3', name: 'Mr. Alex Johnson', designation: 'Route In-charge (Vashi)', email: 'vashi.route@nmmt.com', mobile: '9876543212' },
-  { id: '4', name: 'Ms. Priya Singh', designation: 'Route In-charge (Thane)', email: 'thane.route@nmmt.com', mobile: '9876543213' },
+  { id: '1', name: 'Mr. Yogesh Kaduskar', designation: 'Transport Manager', email: 'transport_manager[@]nmmc[.]gov[.]in', mobile: '9960536654' },
+  { id: '2', name: 'Mr. Tushar Daundkar', designation: 'Chief Accounts and Finance Officer', email: 'nmmt[.]lekha[@]gmail[.]com', mobile: '9594058080' },
+  { id: '3', name: 'Mr. Mr. Vivek Achalkar', designation: 'Executive Engineer', email: 'nmmt[.]engg[@]gmail[.]com', mobile: '9029001810' },
+  { id: '4', name: 'Mr. Sunil Salunkhe', designation: 'Chief Transport Officer', email: 'nmmtcto[@]gmail[.]com', mobile: '9930735576' }
 ];
 
 export const alerts: Alert[] = [
