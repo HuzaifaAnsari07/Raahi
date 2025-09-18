@@ -50,9 +50,8 @@ export default function LoginPage() {
               <Input
                 id="email"
                 type="email"
-                placeholder="m@example.com"
+                placeholder="passenger@example.com"
                 required
-                defaultValue="passenger@example.com"
               />
             </div>
             <div className="grid gap-2">
@@ -61,7 +60,6 @@ export default function LoginPage() {
                 id="password"
                 type="password"
                 required
-                defaultValue="password"
               />
             </div>
           </CardContent>
