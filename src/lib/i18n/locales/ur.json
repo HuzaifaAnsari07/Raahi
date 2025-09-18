@@ -1,0 +1,146 @@
+
+{
+  "header": {
+    "dashboard": "ڈیش بورڈ",
+    "profile": "پروفائل",
+    "logout": "لاگ آؤٹ"
+  },
+  "sidebar": {
+    "dashboard": "ڈیش بورڈ",
+    "live_map": "لائیو نقشہ",
+    "my_tickets": "میرے ٹکٹ",
+    "customer_service": "کسٹمر سروس",
+    "contact_list": "رابطہ کی فہرست",
+    "contact_roadmap": "رابطہ کا روڈ میپ",
+    "feedback": "تاثرات",
+    "admin_panel": "ایڈمن پینل"
+  },
+  "login": {
+    "title": "مسافر لاگ ان",
+    "description": "اپنے اکاؤنٹ میں لاگ ان کرنے کے لیے نیچے اپنا ای میل درج کریں۔",
+    "email_label": "ای میل",
+    "password_label": "پاس ورڈ",
+    "location_checking": "مقام کی اجازت کی جانچ ہو रही ہے...",
+    "location_enabled_title": "مقام فعال",
+    "location_enabled_desc": "مقام تک رسائی دے دی گئی ہے۔",
+    "location_required_title": "مقام تک رسائی درکار ہے",
+    "location_required_desc": "جاری رکھنے کے لیے براہ کرم مقام کی اجازتوں کو فعال کریں۔",
+    "enable_location_button": "مقام فعال کریں",
+    "signin_button": "سائن ان کریں",
+    "signup_prompt": "کیا آپ کا اکاؤنٹ نہیں ہے؟",
+    "signup_link": "سائن اپ کریں"
+  },
+  "register": {
+    "title": "مسافر اکاؤنٹ بنائیں",
+    "description": "اکاؤنٹ بنانے کے لیے اپنی معلومات درج کریں۔",
+    "name_label": "نام",
+    "email_label": "ای میل",
+    "password_label": "پاس ورڈ",
+    "create_account_button": "اکاؤنٹ بنائیں",
+    "signin_prompt": "پہلے سے ہی ایک اکاؤنٹ ہے؟",
+    "signin_link": "سائن ان کریں"
+  },
+  "dashboard": {
+    "title": "دستیاب بسیں",
+    "description": "اپنی بس تلاش کریں اور اسے حقیقی وقت میں ٹریک کریں۔",
+    "departs_at": "روانگی کا وقت",
+    "track_button": "ٹریک کریں",
+    "book_ticket_button": "ٹکٹ بک کریں"
+  },
+  "track_bus": {
+    "on_time": "وقت پر",
+    "free_wifi": "مفت وائی فائی",
+    "ac": "اے سی",
+    "static_map_notice": "یہ ایک جامد نقشہ پلیس ہولڈر ہے۔ لائیو نقشے کے لیے ایک API کلید درکار ہے۔"
+  },
+  "book_ticket": {
+    "title": "اپنا ٹکٹ بک کریں",
+    "route_details_title": "روٹ کی تفصیلات",
+    "bus_number": "بس نمبر",
+    "departure_time": "روانگی کا وقت",
+    "stops": "اسٹاپ",
+    "select_journey_title": "اپنا سفر منتخب کریں",
+    "select_journey_desc": "اپنے بورڈنگ اور منزل کے مقامات کا انتخاب کریں۔",
+    "from_label": "سے",
+    "from_placeholder": "ایک بورڈنگ اسٹاپ منتخب کریں",
+    "to_label": "تک",
+    "to_placeholder": "ایک منزل کا اسٹاپ منتخب کریں",
+    "confirm_button": "بکنگ کی تصدیق کریں (ڈمی ادائیگی)",
+    "confirming_button": "تصدیق ہو رہی ہے..."
+  },
+  "booking_confirmation": {
+    "title": "بکنگ کی تصدیq ہو گئی!",
+    "description": "آپ کا ای-ٹکٹ تیار ہے۔ یہ کیو آر کوڈ کنڈکٹر کو دکھائیں۔",
+    "eticket_title": "NMMT ای-ٹکٹ",
+    "passenger_label": "مسافر",
+    "booking_time_label": "بکنگ کا وقت",
+    "bus_route_label": "بس اور روٹ",
+    "journey_label": "سفر"
+  },
+  "admin": {
+    "dashboard_title": "ایڈمن ڈیش بورڈ",
+    "analytics_tab": "تجزیات",
+    "timetable_tab": "ٹائم ٹیبل مینجمنٹ",
+    "total_bookings": "کل بکنگز",
+    "from_last_month": "پچھلے مہینے سے +20.1%",
+    "active_buses": "فعال بسیں",
+    "across_routes": "{totalRoutes} روٹس پر",
+    "passenger_traffic": "مسافروں کی آمد و رفت",
+    "avg_occupancy_title": "اوسط بس کی occupancy",
+    "avg_occupancy_desc": "آج کے لیے فی روٹ اوسط occupancy کا ایک سنیپ شاٹ۔",
+    "bus_routes_title": "بس کے روٹس",
+    "bus_routes_desc": "اپنے بس کے روٹس اور ٹائم ٹیبلز کا نظم کریں۔",
+    "upload_timetable_button": "ٹائم ٹیبل اپ لوڈ کریں",
+    "route_id_header": "روٹ آئی ڈی",
+    "route_name_header": "روٹ کا نام",
+    "stops_count_header": "اسٹاپس کی تعداد",
+    "actions_header": "اعمال",
+    "edit_button": "ترمیم کریں"
+  },
+  "customer_service": {
+    "title": "کسٹمر سروس",
+    "contact_info_title": "رابطے کی معلومات",
+    "contact_info_desc": "کسی بھی مدد کے لیے ہماری ٹیم से رابطہ کریں۔",
+    "faq_title": "اکثر पूछे جانے والے سوالات",
+    "faq_desc": "عام سوالات کے جوابات تلاش کریں۔"
+  },
+  "contact_list": {
+    "title": "رابطہ کی فہرست",
+    "card_title": "سرکاری NMMT رابطے",
+    "card_desc": "اپنے سوالات کے لیے صحیح شخص سے رابطہ کریں۔",
+    "sr_no": "سیریل نمبر",
+    "name": "نام",
+    "designation": "عہدہ",
+    "email": "ای میل",
+    "mobile": "موبائل نمبر"
+  },
+  "contact_roadmap": {
+    "title": "رابطہ کا روڈ میپ",
+    "card_title": "NMMT تنظیمی چارٹ"
+  },
+  "feedback": {
+    "title": "تاثرات جمع کروائیں",
+    "card_title": "اپنے خیالات کا اشتراک کریں",
+    "card_desc": "آپ کے تاثرات हमारी خدمات کو बेहतर बनाने میں مدد کرتے ہیں۔",
+    "name_label": "پورا نام",
+    "email_label": "ای میل اڈریس",
+    "bus_number_label": "بس نمبر (اختیاری)",
+    "message_label": "تاثرات کا پیغام",
+    "submit_button": "تاثرات جمع کروائیں",
+    "submitting_button": "جمع ہو रहा ہے...",
+    "success_title": "کامیابی!",
+    "success_message": "آپ کے تاثرات کا شکریہ!"
+  },
+  "occupancy": {
+    "live_occupancy": "لائیو occupancy",
+    "seats": "نشستیں",
+    "ai_prediction": "AI پیشن گوئی",
+    "confidence": "{confidence} اعتماد"
+  },
+  "chatbot": {
+    "title": "NMMT اسسٹنٹ",
+    "greeting": "ہیلو! میں NMMT اسسٹنٹ ہوں۔ میں آج آپ کی کس طرح مدد کر سکتا ہوں؟",
+    "placeholder": "ایک سوال पूछیں...",
+    "error": "مجھے ابھی رابطہ کرنے میں دشواری ہو रही ہے۔ براہ کرم بعد میں دوبارہ کوشش کریں۔"
+  }
+}

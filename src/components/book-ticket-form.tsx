@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Button } from '@/components/ui/button';
@@ -24,6 +25,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { stops } from '@/lib/data';
+import { useTranslation } from '@/lib/i18n/use-translation';
 import type { Bus, Route } from '@/lib/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
@@ -45,6 +47,7 @@ export default function BookTicketForm({
 }) {
   const router = useRouter();
   const { toast } = useToast();
+  const { t } = useTranslation();
 
   const form = useForm<z.infer<typeof bookingSchema>>({
     resolver: zodResolver(bookingSchema),
@@ -89,9 +92,9 @@ export default function BookTicketForm({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Select Your Journey</CardTitle>
+        <CardTitle>{t('book_ticket.select_journey_title')}</CardTitle>
         <CardDescription>
-          Choose your boarding and destination points.
+          {t('book_ticket.select_journey_desc')}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -102,14 +105,14 @@ export default function BookTicketForm({
               name="fromStop"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>From</FormLabel>
+                  <FormLabel>{t('book_ticket.from_label')}</FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="Select a boarding stop" />
+                        <SelectValue placeholder={t('book_ticket.from_placeholder')} />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
@@ -129,14 +132,14 @@ export default function BookTicketForm({
               name="toStop"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>To</FormLabel>
+                  <FormLabel>{t('book_ticket.to_label')}</FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="Select a destination stop" />
+                        <SelectValue placeholder={t('book_ticket.to_placeholder')} />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
@@ -152,7 +155,7 @@ export default function BookTicketForm({
               )}
             />
             <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
-              {form.formState.isSubmitting ? 'Confirming...' : 'Confirm Booking (Dummy Pay)'}
+              {form.formState.isSubmitting ? t('book_ticket.confirming_button') : t('book_ticket.confirm_button')}
             </Button>
           </form>
         </Form>

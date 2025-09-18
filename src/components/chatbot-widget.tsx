@@ -10,6 +10,7 @@ import { MessageSquare, Send, Bot, User, X, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { askChatbot } from '@/ai/flows/ask-chatbot';
 import type { Message as GenkitMessage } from 'genkit';
+import { useTranslation } from '@/lib/i18n/use-translation';
 
 
 type Message = {
@@ -18,9 +19,10 @@ type Message = {
 };
 
 export default function ChatbotWidget() {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { sender: 'bot', text: "Hello! I'm the NMMT assistant. How can I help you today?" },
+    { sender: 'bot', text: t('chatbot.greeting') },
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -58,7 +60,7 @@ export default function ChatbotWidget() {
       setMessages(prev => [...prev, botResponse]);
     } catch (error) {
       console.error("Chatbot error:", error);
-      const errorResponse: Message = { sender: 'bot', text: "I'm having trouble connecting right now. Please try again later." };
+      const errorResponse: Message = { sender: 'bot', text: t('chatbot.error') };
       setMessages(prev => [...prev, errorResponse]);
     } finally {
       setIsLoading(false);
@@ -86,7 +88,7 @@ export default function ChatbotWidget() {
           <header className="flex items-center justify-between p-3 bg-primary text-primary-foreground rounded-t-lg">
             <div className="flex items-center gap-2">
               <Bot className="h-6 w-6" />
-              <h3 className="font-semibold">NMMT Assistant</h3>
+              <h3 className="font-semibold">{t('chatbot.title')}</h3>
             </div>
             <button onClick={() => setIsOpen(false)} className="p-1 rounded-full hover:bg-primary/80">
               <X className="h-5 w-5" />
@@ -137,7 +139,7 @@ export default function ChatbotWidget() {
               <Input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask a question..."
+                placeholder={t('chatbot.placeholder')}
                 className="flex-1"
                 autoComplete='off'
                 disabled={isLoading}

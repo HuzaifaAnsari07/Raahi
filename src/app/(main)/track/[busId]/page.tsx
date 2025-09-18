@@ -1,3 +1,6 @@
+
+'use client';
+
 import TrackBusClient from '@/components/track-bus-client';
 import { buses, busRoutes } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';

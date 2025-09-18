@@ -1,3 +1,6 @@
+
+'use client';
+
 import {
   Card,
   CardContent,
@@ -13,19 +16,21 @@ import {
 } from "@/components/ui/accordion";
 import { contacts, faqs } from '@/lib/data';
 import { Mail, Phone } from 'lucide-react';
+import { useTranslation } from '@/lib/i18n/use-translation';
 
 export default function CustomerServicePage() {
+  const { t } = useTranslation();
   return (
     <div className="flex flex-col gap-8">
-      <h1 className="text-3xl font-bold tracking-tight">Customer Service</h1>
+      <h1 className="text-3xl font-bold tracking-tight">{t('customer_service.title')}</h1>
 
       <div className="grid gap-8 lg:grid-cols-2">
         {/* Contact List */}
         <Card className="lg:col-span-1">
           <CardHeader>
-            <CardTitle>Contact Information</CardTitle>
+            <CardTitle>{t('customer_service.contact_info_title')}</CardTitle>
             <CardDescription>
-              Reach out to our team for any assistance.
+              {t('customer_service.contact_info_desc')}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -51,9 +56,9 @@ export default function CustomerServicePage() {
         {/* FAQ Section */}
         <Card className="lg:col-span-1">
           <CardHeader>
-            <CardTitle>Frequently Asked Questions</CardTitle>
+            <CardTitle>{t('customer_service.faq_title')}</CardTitle>
             <CardDescription>
-              Find answers to common questions.
+              {t('customer_service.faq_desc')}
             </CardDescription>
           </CardHeader>
           <CardContent>

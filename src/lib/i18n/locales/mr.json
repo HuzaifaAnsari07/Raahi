@@ -1,0 +1,146 @@
+
+{
+  "header": {
+    "dashboard": "डॅशबोर्ड",
+    "profile": "प्रोफाइल",
+    "logout": "लॉग आउट"
+  },
+  "sidebar": {
+    "dashboard": "डॅशबोर्ड",
+    "live_map": "लाइव्ह नकाशा",
+    "my_tickets": "माझी तिकिटे",
+    "customer_service": "ग्राहक सेवा",
+    "contact_list": "संपर्क सूची",
+    "contact_roadmap": "संपर्क रोडमॅप",
+    "feedback": "अभिप्राय",
+    "admin_panel": "प्रशासक पॅनेल"
+  },
+  "login": {
+    "title": "प्रवासी लॉगिन",
+    "description": "तुमच्या खात्यात लॉगिन करण्यासाठी खाली तुमचा ईमेल प्रविष्ट करा.",
+    "email_label": "ईमेल",
+    "password_label": "पासवर्ड",
+    "location_checking": "स्थान परवानगी तपासत आहे...",
+    "location_enabled_title": "स्थान सक्षम",
+    "location_enabled_desc": "स्थान प्रवेश मंजूर झाला आहे.",
+    "location_required_title": "स्थान प्रवेश आवश्यक",
+    "location_required_desc": "पुढे जाण्यासाठी कृपया स्थान परवानग्या सक्षम करा.",
+    "enable_location_button": "स्थान सक्षम करा",
+    "signin_button": "साइन इन करा",
+    "signup_prompt": "तुमचे खाते नाही?",
+    "signup_link": "साइन अप करा"
+  },
+  "register": {
+    "title": "प्रवासी खाते तयार करा",
+    "description": "खाते तयार करण्यासाठी तुमची माहिती प्रविष्ट करा.",
+    "name_label": "नाव",
+    "email_label": "ईमेल",
+    "password_label": "पासवर्ड",
+    "create_account_button": "खाते तयार करा",
+    "signin_prompt": "आधीच खाते आहे?",
+    "signin_link": "साइन इन करा"
+  },
+  "dashboard": {
+    "title": "उपलब्ध बसेस",
+    "description": "तुमची बस शोधा आणि तिला रिअल-टाइममध्ये ट्रॅक करा.",
+    "departs_at": "येथे निघते",
+    "track_button": "ट्रॅक करा",
+    "book_ticket_button": "तिकीट बुक करा"
+  },
+  "track_bus": {
+    "on_time": "वेळेवर",
+    "free_wifi": "मोफत वायफाय",
+    "ac": "एसी",
+    "static_map_notice": "हा एक स्थिर नकाशा प्लेसहोल्डर आहे. लाइव्ह नकाशासाठी एपीआय की आवश्यक आहे."
+  },
+  "book_ticket": {
+    "title": "तुमचे तिकीट बुक करा",
+    "route_details_title": "मार्ग तपशील",
+    "bus_number": "बस क्रमांक",
+    "departure_time": "निघण्याची वेळ",
+    "stops": "थांबे",
+    "select_journey_title": "तुमचा प्रवास निवडा",
+    "select_journey_desc": "तुमचे बोर्डिंग आणि गंतव्य स्थान निवडा.",
+    "from_label": "पासून",
+    "from_placeholder": "बोर्डिंग थांबा निवडा",
+    "to_label": "पर्यंत",
+    "to_placeholder": "गंतव्य थांबा निवडा",
+    "confirm_button": "बुकिंग निश्चित करा (डमी पे)",
+    "confirming_button": "निश्चित करत आहे..."
+  },
+  "booking_confirmation": {
+    "title": "बुकिंग निश्चित झाले!",
+    "description": "तुमचे ई-तिकीट तयार आहे. हा क्यूआर कोड कंडक्टरला दाखवा.",
+    "eticket_title": "NMMT ई-तिकीट",
+    "passenger_label": "प्रवासी",
+    "booking_time_label": "बुकिंगची वेळ",
+    "bus_route_label": "बस आणि मार्ग",
+    "journey_label": "प्रवास"
+  },
+  "admin": {
+    "dashboard_title": "प्रशासक डॅशबोर्ड",
+    "analytics_tab": "विश्लेषण",
+    "timetable_tab": "वेळापत्रक व्यवस्थापन",
+    "total_bookings": "एकूण बुकिंग",
+    "from_last_month": "मागील महिन्यापासून +२०.१%",
+    "active_buses": "सक्रिय बसेस",
+    "across_routes": "{totalRoutes} मार्गांवर",
+    "passenger_traffic": "प्रवासी वाहतूक",
+    "avg_occupancy_title": "सरासरी बसमधील गर्दी",
+    "avg_occupancy_desc": "आजच्या प्रत्येक मार्गावरील सरासरी गर्दीचा एक स्नॅपशॉट.",
+    "bus_routes_title": "बस मार्ग",
+    "bus_routes_desc": "तुमचे बस मार्ग आणि वेळापत्रक व्यवस्थापित करा.",
+    "upload_timetable_button": "वेळापत्रक अपलोड करा",
+    "route_id_header": "मार्ग आयडी",
+    "route_name_header": "मार्गाचे नाव",
+    "stops_count_header": "थांब्यांची संख्या",
+    "actions_header": "क्रिया",
+    "edit_button": "संपादित करा"
+  },
+  "customer_service": {
+    "title": "ग्राहक सेवा",
+    "contact_info_title": "संपर्क माहिती",
+    "contact_info_desc": "कोणत्याही सहाय्यासाठी आमच्या टीमशी संपर्क साधा.",
+    "faq_title": "सतत विचारले जाणारे प्रश्न",
+    "faq_desc": "सामान्य प्रश्नांची उत्तरे शोधा."
+  },
+  "contact_list": {
+    "title": "संपर्क सूची",
+    "card_title": "अधिकृत NMMT संपर्क",
+    "card_desc": "तुमच्या प्रश्नांसाठी योग्य व्यक्तीशी संपर्क साधा.",
+    "sr_no": "अ.क्र.",
+    "name": "नाव",
+    "designation": "पद",
+    "email": "ईमेल",
+    "mobile": "मोबाईल नंबर"
+  },
+  "contact_roadmap": {
+    "title": "संपर्क रोडमॅप",
+    "card_title": "NMMT संस्थात्मक तक्ता"
+  },
+  "feedback": {
+    "title": "अभिप्राय सबमिट करा",
+    "card_title": "तुमचे विचार सांगा",
+    "card_desc": "तुमचा अभिप्राय आम्हाला आमच्या सेवा सुधारण्यात मदत करतो.",
+    "name_label": "पूर्ण नाव",
+    "email_label": "ईमेल पत्ता",
+    "bus_number_label": "बस क्रमांक (ऐच्छिक)",
+    "message_label": "अभिप्रायाचा संदेश",
+    "submit_button": "अभिप्राय सबमिट करा",
+    "submitting_button": "सबमिट करत आहे...",
+    "success_title": "यशस्वी!",
+    "success_message": "तुमच्या अभिप्रायाबद्दल धन्यवाद!"
+  },
+  "occupancy": {
+    "live_occupancy": "लाइव्ह गर्दी",
+    "seats": "जागा",
+    "ai_prediction": "एआय भविष्यवाणी",
+    "confidence": "{confidence} आत्मविश्वास"
+  },
+  "chatbot": {
+    "title": "NMMT सहाय्यक",
+    "greeting": "नमस्कार! मी NMMT सहाय्यक आहे. मी आज तुमची कशी मदत करू शकेन?",
+    "placeholder": "प्रश्न विचारा...",
+    "error": "मला सध्या कनेक्ट होण्यात अडचण येत आहे. कृपया नंतर पुन्हा प्रयत्न करा."
+  }
+}

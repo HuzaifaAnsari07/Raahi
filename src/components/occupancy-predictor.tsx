@@ -5,6 +5,7 @@ import { predictBusOccupancy, PredictBusOccupancyInput } from '@/ai/flows/predic
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useTranslation } from '@/lib/i18n/use-translation';
 import type { Bus, Route } from '@/lib/types';
 import { Users } from 'lucide-react';
 import { useEffect, useState } from 'react';
@@ -20,6 +21,7 @@ type OccupancyState = {
 };
 
 export default function OccupancyPredictor({ bus, route }: { bus: Bus, route: Route }) {
+  const { t } = useTranslation();
   const [occupancy, setOccupancy] = useState<OccupancyState>({
     loading: true,
     prediction: null,
@@ -85,15 +87,15 @@ export default function OccupancyPredictor({ bus, route }: { bus: Bus, route: Ro
       <div className="flex items-center justify-between text-sm">
         <div className="flex items-center font-medium">
           <Users className="mr-2 h-4 w-4 text-primary" />
-          <span>Live Occupancy</span>
+          <span>{t('occupancy.live_occupancy')}</span>
         </div>
-        <span className="font-semibold">{predictedOccupancy} / {bus.totalSeats} seats</span>
+        <span className="font-semibold">{predictedOccupancy} / {bus.totalSeats} {t('occupancy.seats')}</span>
       </div>
       <Progress value={occupancyPercentage} indicatorClassName={progressColorClass} />
       <div className="flex items-center justify-between text-xs text-muted-foreground">
-        <span>AI Prediction</span>
+        <span>{t('occupancy.ai_prediction')}</span>
         <Badge variant={occupancy.prediction.confidence === 'High' ? 'default' : 'secondary'}>
-          {occupancy.prediction.confidence} Confidence
+          {t('occupancy.confidence', { confidence: occupancy.prediction.confidence })}
         </Badge>
       </div>
     </div>

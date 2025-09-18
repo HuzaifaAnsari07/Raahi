@@ -1,0 +1,146 @@
+
+{
+  "header": {
+    "dashboard": "डैशबोर्ड",
+    "profile": "प्रोफ़ाइल",
+    "logout": "लॉग आउट"
+  },
+  "sidebar": {
+    "dashboard": "डैशबोर्ड",
+    "live_map": "लाइव मैप",
+    "my_tickets": "मेरे टिकट",
+    "customer_service": "ग्राहक सेवा",
+    "contact_list": "संपर्क सूची",
+    "contact_roadmap": "संपर्क रोडमैप",
+    "feedback": "प्रतिक्रिया",
+    "admin_panel": "एडमिन पैनल"
+  },
+  "login": {
+    "title": "यात्री लॉगिन",
+    "description": "अपने खाते में लॉगिन करने के लिए नीचे अपना ईमेल दर्ज करें।",
+    "email_label": "ईमेल",
+    "password_label": "पासवर्ड",
+    "location_checking": "स्थान की अनुमति जाँची जा रही है...",
+    "location_enabled_title": "स्थान सक्षम",
+    "location_enabled_desc": "स्थान की पहुँच प्रदान की गई है।",
+    "location_required_title": "स्थान की पहुँच आवश्यक है",
+    "location_required_desc": "जारी रखने के लिए कृपया स्थान की अनुमति सक्षम करें।",
+    "enable_location_button": "स्थान सक्षम करें",
+    "signin_button": "साइन इन करें",
+    "signup_prompt": "क्या आपका कोई खाता नहीं है?",
+    "signup_link": "साइन अप करें"
+  },
+  "register": {
+    "title": "यात्री खाता बनाएँ",
+    "description": "खाता बनाने के लिए अपनी जानकारी दर्ज करें।",
+    "name_label": "नाम",
+    "email_label": "ईमेल",
+    "password_label": "पासवर्ड",
+    "create_account_button": "खाता बनाएँ",
+    "signin_prompt": "क्या आपका पहले से ही खाता है?",
+    "signin_link": "साइन इन करें"
+  },
+  "dashboard": {
+    "title": "उपलब्ध बसें",
+    "description": "अपनी बस ढूंढें और उसे वास्तविक समय में ट्रैक करें।",
+    "departs_at": "प्रस्थान का समय",
+    "track_button": "ट्रैक करें",
+    "book_ticket_button": "टिकट बुक करें"
+  },
+  "track_bus": {
+    "on_time": "समय पर",
+    "free_wifi": "मुफ्त वाईफाई",
+    "ac": "एसी",
+    "static_map_notice": "यह एक स्थैतिक नक्शा प्लेसहोल्डर है। लाइव मैप के लिए एक एपीआई कुंजी की आवश्यकता है।"
+  },
+  "book_ticket": {
+    "title": "अपना टिकट बुक करें",
+    "route_details_title": "मार्ग का विवरण",
+    "bus_number": "बस नंबर",
+    "departure_time": "प्रस्थान का समय",
+    "stops": "स्टॉप",
+    "select_journey_title": "अपनी यात्रा चुनें",
+    "select_journey_desc": "अपने बोर्डिंग और गंतव्य बिंदुओं का चयन करें।",
+    "from_label": "से",
+    "from_placeholder": "एक बोर्डिंग स्टॉप चुनें",
+    "to_label": "तक",
+    "to_placeholder": "एक गंतव्य स्टॉप चुनें",
+    "confirm_button": "बुकिंग की पुष्टि करें (डमी भुगतान)",
+    "confirming_button": "पुष्टि हो रही है..."
+  },
+  "booking_confirmation": {
+    "title": "बुकिंग की पुष्टि हो गई!",
+    "description": "आपका ई-टिकट तैयार है। यह क्यूआर कोड कंडक्टर को दिखाएं।",
+    "eticket_title": "एनएमएमटी ई-टिकट",
+    "passenger_label": "यात्री",
+    "booking_time_label": "बुकिंग का समय",
+    "bus_route_label": "बस और मार्ग",
+    "journey_label": "यात्रा"
+  },
+  "admin": {
+    "dashboard_title": "एडमिन डैशबोर्ड",
+    "analytics_tab": "विश्लेषिकी",
+    "timetable_tab": "समय सारिणी प्रबंधन",
+    "total_bookings": "कुल बुकिंग",
+    "from_last_month": "पिछले महीने से +20.1%",
+    "active_buses": "सक्रिय बसें",
+    "across_routes": "{totalRoutes} मार्गों पर",
+    "passenger_traffic": "यात्री यातायात",
+    "avg_occupancy_title": "औसत बस अधिभोग",
+    "avg_occupancy_desc": "आज के लिए प्रति मार्ग औसत अधिभोग का एक स्नैपशॉट।",
+    "bus_routes_title": "बस मार्ग",
+    "bus_routes_desc": "अपने बस मार्गों और समय सारिणी का प्रबंधन करें।",
+    "upload_timetable_button": "समय सारिणी अपलोड करें",
+    "route_id_header": "मार्ग आईडी",
+    "route_name_header": "मार्ग का नाम",
+    "stops_count_header": "स्टॉप की संख्या",
+    "actions_header": "कार्रवाइयाँ",
+    "edit_button": "संपादित करें"
+  },
+  "customer_service": {
+    "title": "ग्राहक सेवा",
+    "contact_info_title": "संपर्क जानकारी",
+    "contact_info_desc": "किसी भी सहायता के लिए हमारी टीम से संपर्क करें।",
+    "faq_title": "अक्सर पूछे जाने वाले प्रश्न",
+    "faq_desc": "सामान्य प्रश्नों के उत्तर खोजें।"
+  },
+  "contact_list": {
+    "title": "संपर्क सूची",
+    "card_title": "आधिकारिक एनएमएमटी संपर्क",
+    "card_desc": "अपने प्रश्नों के लिए सही व्यक्ति से संपर्क करें।",
+    "sr_no": "क्र.सं.",
+    "name": "नाम",
+    "designation": "पद",
+    "email": "ईमेल",
+    "mobile": "मोबाइल नंबर"
+  },
+  "contact_roadmap": {
+    "title": "संपर्क रोडमैप",
+    "card_title": "एनएमएमटी संगठनात्मक चार्ट"
+  },
+  "feedback": {
+    "title": "प्रतिक्रिया भेजें",
+    "card_title": "अपने विचार साझा करें",
+    "card_desc": "आपकी प्रतिक्रिया हमें हमारी सेवाओं को बेहतर बनाने में मदद करती है।",
+    "name_label": "पूरा नाम",
+    "email_label": "ईमेल पता",
+    "bus_number_label": "बस नंबर (वैकल्पिक)",
+    "message_label": "प्रतिक्रिया संदेश",
+    "submit_button": "प्रतिक्रिया भेजें",
+    "submitting_button": "भेजा जा रहा है...",
+    "success_title": "सफलता!",
+    "success_message": "आपकी प्रतिक्रिया के लिए धन्यवाद!"
+  },
+  "occupancy": {
+    "live_occupancy": "लाइव अधिभोग",
+    "seats": "सीटें",
+    "ai_prediction": "एआई भविष्यवाणी",
+    "confidence": "{confidence} आत्मविश्वास"
+  },
+  "chatbot": {
+    "title": "एनएमएमटी सहायक",
+    "greeting": "नमस्ते! मैं एनएमएमटी सहायक हूं। मैं आज आपकी कैसे मदद कर सकता हूं?",
+    "placeholder": "एक प्रश्न पूछें...",
+    "error": "मुझे अभी कनेक्ट होने में समस्या हो रही है। कृपया बाद में पुनः प्रयास करें।"
+  }
+}

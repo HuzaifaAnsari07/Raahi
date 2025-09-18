@@ -1,3 +1,6 @@
+
+'use client';
+
 import {
   Card,
   CardContent,
@@ -14,17 +17,19 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { contacts } from '@/lib/data';
+import { useTranslation } from '@/lib/i18n/use-translation';
 import { Mail, Phone } from 'lucide-react';
 
 export default function ContactListPage() {
+  const { t } = useTranslation();
   return (
     <div className="flex flex-col gap-8">
-      <h1 className="text-3xl font-bold tracking-tight">Contact List</h1>
+      <h1 className="text-3xl font-bold tracking-tight">{t('contact_list.title')}</h1>
       <Card>
         <CardHeader>
-          <CardTitle>Official NMMT Contacts</CardTitle>
+          <CardTitle>{t('contact_list.card_title')}</CardTitle>
           <CardDescription>
-            Get in touch with the right person for your queries.
+            {t('contact_list.card_desc')}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -32,11 +37,11 @@ export default function ContactListPage() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="w-[80px]">Sr. No</TableHead>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Designation</TableHead>
-                  <TableHead>Email</TableHead>
-                  <TableHead>Mobile Number</TableHead>
+                  <TableHead className="w-[80px]">{t('contact_list.sr_no')}</TableHead>
+                  <TableHead>{t('contact_list.name')}</TableHead>
+                  <TableHead>{t('contact_list.designation')}</TableHead>
+                  <TableHead>{t('contact_list.email')}</TableHead>
+                  <TableHead>{t('contact_list.mobile')}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>

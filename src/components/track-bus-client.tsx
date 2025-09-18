@@ -14,6 +14,7 @@ import OccupancyPredictor from '@/components/occupancy-predictor';
 import Image from 'next/image';
 import type { Bus, Route } from '@/lib/types';
 import type { ImagePlaceholder } from '@/lib/placeholder-images';
+import { useTranslation } from '@/lib/i18n/use-translation';
 
 type TrackBusClientProps = {
   bus: Bus;
@@ -22,6 +23,7 @@ type TrackBusClientProps = {
 };
 
 export default function TrackBusClient({ bus, route, busImage }: TrackBusClientProps) {
+  const { t } = useTranslation();
   // Simulate real-time bus data updates
   useEffect(() => {
     const interval = setInterval(() => {
@@ -48,7 +50,7 @@ export default function TrackBusClient({ bus, route, busImage }: TrackBusClientP
             </div>
         </div>
         <div className="absolute bottom-4 left-4 bg-background/80 p-2 rounded-lg text-xs shadow-md backdrop-blur-sm">
-          This is a static map placeholder. Live map requires an API key.
+          {t('track_bus.static_map_notice')}
         </div>
       </div>
       <div className="flex flex-col gap-6">
@@ -76,15 +78,15 @@ export default function TrackBusClient({ bus, route, busImage }: TrackBusClientP
             <div className="flex items-center justify-between text-sm text-muted-foreground">
                 <div className="flex items-center gap-2">
                     <Clock className="h-4 w-4 text-primary"/>
-                    <span>On Time</span>
+                    <span>{t('track_bus.on_time')}</span>
                 </div>
                 <div className="flex items-center gap-2">
                     <Wifi className="h-4 w-4 text-primary"/>
-                    <span>Free WiFi</span>
+                    <span>{t('track_bus.free_wifi')}</span>
                 </div>
                  <div className="flex items-center gap-2">
                     <BusIcon className="h-4 w-4 text-primary"/>
-                    <span>AC</span>
+                    <span>{t('track_bus.ac')}</span>
                 </div>
             </div>
           </CardContent>

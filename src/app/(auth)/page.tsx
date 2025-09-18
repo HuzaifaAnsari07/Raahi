@@ -19,12 +19,14 @@ import { useState, useEffect } from 'react';
 import { MapPin, CheckCircle } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useTranslation } from '@/lib/i18n/use-translation';
 
 export default function LoginPage() {
   const router = useRouter();
   const [hasLocationPermission, setHasLocationPermission] = useState(false);
   const [isCheckingPermission, setIsCheckingPermission] = useState(true);
   const [isClient, setIsClient] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     setIsClient(true);
@@ -108,9 +110,9 @@ export default function LoginPage() {
       </div>
       <Card className="w-full max-w-sm">
         <CardHeader>
-          <CardTitle className="text-2xl">Passenger Login</CardTitle>
+          <CardTitle className="text-2xl">{t('login.title')}</CardTitle>
           <CardDescription>
-            Enter your email below to login to your account.
+            {t('login.description')}
           </CardDescription>
         </CardHeader>
         {!isClient ? (
@@ -125,7 +127,7 @@ export default function LoginPage() {
           <form onSubmit={handleLogin}>
             <CardContent className="grid gap-4">
               <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">{t('login.email_label')}</Label>
                 <Input
                   id="email"
                   type="email"
@@ -134,7 +136,7 @@ export default function LoginPage() {
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">{t('login.password_label')}</Label>
                 <Input
                   id="password"
                   type="password"
@@ -145,14 +147,14 @@ export default function LoginPage() {
                 {isCheckingPermission ? (
                   <div className="flex items-center text-sm text-muted-foreground p-2 border rounded-md">
                     <MapPin className="h-4 w-4 mr-2 animate-pulse" />
-                    Checking location permission...
+                    {t('login.location_checking')}
                   </div>
                 ) : hasLocationPermission ? (
                   <Alert variant="default" className="border-green-500 bg-green-500/10 text-green-700 dark:text-green-300">
                       <CheckCircle className="h-4 w-4 text-green-500" />
-                      <AlertTitle>Location Enabled</AlertTitle>
+                      <AlertTitle>{t('login.location_enabled_title')}</AlertTitle>
                       <AlertDescription>
-                          Location access has been granted.
+                          {t('login.location_enabled_desc')}
                       </AlertDescription>
                   </Alert>
                 ) : (
@@ -160,15 +162,15 @@ export default function LoginPage() {
                     <div className="flex items-start">
                         <MapPin className="h-4 w-4" />
                         <div className="ml-4">
-                            <AlertTitle>Location Access Required</AlertTitle>
+                            <AlertTitle>{t('login.location_required_title')}</AlertTitle>
                             <AlertDescription>
-                                Please enable location permissions to continue.
+                                {t('login.location_required_desc')}
                             </AlertDescription>
                         </div>
                     </div>
                     <Button type="button" variant="secondary" onClick={requestLocationPermission} className="w-full">
                         <MapPin className="mr-2 h-4 w-4" />
-                        Enable Location
+                        {t('login.enable_location_button')}
                     </Button>
                   </Alert>
                 )}
@@ -176,12 +178,12 @@ export default function LoginPage() {
             </CardContent>
             <CardFooter className="flex flex-col gap-4">
               <Button type="submit" className="w-full" disabled={!hasLocationPermission || isCheckingPermission}>
-                  Sign in
+                  {t('login.signin_button')}
               </Button>
               <div className="text-center text-sm">
-                Don&apos;t have an account?{' '}
+                {t('login.signup_prompt')}{' '}
                 <Link href="/register" className="underline">
-                  Sign up
+                  {t('login.signup_link')}
                 </Link>
               </div>
             </CardFooter>

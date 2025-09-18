@@ -1,3 +1,4 @@
+
 'use client';
 
 import {
@@ -26,6 +27,7 @@ import { usePathname } from 'next/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Separator } from './ui/separator';
 import Image from 'next/image';
+import { useTranslation } from '@/lib/i18n/use-translation';
 
 const user = {
     name: "Passenger",
@@ -36,6 +38,7 @@ const user = {
 
 export default function AppSidebar() {
   const pathname = usePathname();
+  const { t } = useTranslation();
   const isActive = (path: string) => pathname.startsWith(path);
 
   return (
@@ -61,11 +64,11 @@ export default function AppSidebar() {
             <SidebarMenuButton
               asChild
               isActive={pathname === '/dashboard'}
-              tooltip="Dashboard"
+              tooltip={t('sidebar.dashboard')}
             >
               <Link href="/dashboard">
                 <LayoutDashboard />
-                <span>Dashboard</span>
+                <span>{t('sidebar.dashboard')}</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -73,11 +76,11 @@ export default function AppSidebar() {
             <SidebarMenuButton
               asChild
               isActive={isActive('/track')}
-              tooltip="Live Map"
+              tooltip={t('sidebar.live_map')}
             >
               <Link href="/track/bus-1">
                 <Map />
-                <span>Live Map</span>
+                <span>{t('sidebar.live_map')}</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -85,11 +88,11 @@ export default function AppSidebar() {
             <SidebarMenuButton
               asChild
               isActive={isActive('/booking-confirmation')}
-              tooltip="My Tickets"
+              tooltip={t('sidebar.my_tickets')}
             >
               <Link href="/booking-confirmation?passengerName=Passenger&bookingTime=Tue%2C%20Jul%2023%2C%202024%2C%2010%3A30%20AM&busNumber=MH-43-1234&routeName=Route%2010%3A%20Vashi%20to%20CBD%20Belapur&fromStop=Vashi%20Bus%20Stn&toStop=Nerul%20LP">
                 <Ticket />
-                <span>My Tickets</span>
+                <span>{t('sidebar.my_tickets')}</span>
                 <SidebarMenuBadge>3</SidebarMenuBadge>
               </Link>
             </SidebarMenuButton>
@@ -99,11 +102,11 @@ export default function AppSidebar() {
             <SidebarMenuButton
               asChild
               isActive={isActive('/customer-service')}
-              tooltip="Support"
+              tooltip={t('sidebar.customer_service')}
             >
               <Link href="/customer-service">
                 <LifeBuoy />
-                <span>Customer Service</span>
+                <span>{t('sidebar.customer_service')}</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -111,11 +114,11 @@ export default function AppSidebar() {
             <SidebarMenuButton
               asChild
               isActive={isActive('/contact-list')}
-              tooltip="Contacts"
+              tooltip={t('sidebar.contact_list')}
             >
               <Link href="/contact-list">
                 <Phone />
-                <span>Contact List</span>
+                <span>{t('sidebar.contact_list')}</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -123,11 +126,11 @@ export default function AppSidebar() {
             <SidebarMenuButton
               asChild
               isActive={isActive('/contact-roadmap')}
-              tooltip="Roadmap"
+              tooltip={t('sidebar.contact_roadmap')}
             >
               <Link href="/contact-roadmap">
                 <FileText />
-                <span>Contact Roadmap</span>
+                <span>{t('sidebar.contact_roadmap')}</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -135,11 +138,11 @@ export default function AppSidebar() {
             <SidebarMenuButton
               asChild
               isActive={isActive('/feedback')}
-              tooltip="Feedback"
+              tooltip={t('sidebar.feedback')}
             >
               <Link href="/feedback">
                 <MessageSquare />
-                <span>Feedback</span>
+                <span>{t('sidebar.feedback')}</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -149,11 +152,11 @@ export default function AppSidebar() {
               <SidebarMenuButton
                 asChild
                 isActive={isActive('/admin')}
-                tooltip="Admin"
+                tooltip={t('sidebar.admin_panel')}
               >
                 <Link href="/admin/dashboard">
                   <ShieldCheck />
-                  <span>Admin Panel</span>
+                  <span>{t('sidebar.admin_panel')}</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>

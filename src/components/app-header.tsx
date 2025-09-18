@@ -12,8 +12,11 @@ import { SidebarTrigger } from './ui/sidebar';
 import Link from 'next/link';
 import { LogOut, User, LayoutDashboard } from 'lucide-react';
 import Image from 'next/image';
+import LanguageSwitcher from './language-switcher';
+import { useTranslation } from '@/lib/i18n/use-translation';
 
 export default function AppHeader() {
+  const { t } = useTranslation();
   return (
     <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background/80 px-4 backdrop-blur-sm md:px-6">
       <div className="flex items-center gap-2">
@@ -31,6 +34,7 @@ export default function AppHeader() {
       </div>
 
       <div className="flex w-full items-center justify-end gap-4">
+        <LanguageSwitcher />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
@@ -55,16 +59,16 @@ export default function AppHeader() {
             <DropdownMenuSeparator />
             <DropdownMenuItem>
               <LayoutDashboard className="mr-2 h-4 w-4" />
-              <span>Dashboard</span>
+              <span>{t('header.dashboard')}</span>
             </DropdownMenuItem>
             <DropdownMenuItem>
               <User className="mr-2 h-4 w-4" />
-              <span>Profile</span>
+              <span>{t('header.profile')}</span>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
               <LogOut className="mr-2 h-4 w-4" />
-              <Link href="/">Log out</Link>
+              <Link href="/">{t('header.logout')}</Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

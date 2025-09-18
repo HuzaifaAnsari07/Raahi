@@ -1,0 +1,146 @@
+
+{
+  "header": {
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "logout": "Log out"
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "live_map": "Live Map",
+    "my_tickets": "My Tickets",
+    "customer_service": "Customer Service",
+    "contact_list": "Contact List",
+    "contact_roadmap": "Contact Roadmap",
+    "feedback": "Feedback",
+    "admin_panel": "Admin Panel"
+  },
+  "login": {
+    "title": "Passenger Login",
+    "description": "Enter your email below to login to your account.",
+    "email_label": "Email",
+    "password_label": "Password",
+    "location_checking": "Checking location permission...",
+    "location_enabled_title": "Location Enabled",
+    "location_enabled_desc": "Location access has been granted.",
+    "location_required_title": "Location Access Required",
+    "location_required_desc": "Please enable location permissions to continue.",
+    "enable_location_button": "Enable Location",
+    "signin_button": "Sign in",
+    "signup_prompt": "Don't have an account?",
+    "signup_link": "Sign up"
+  },
+  "register": {
+    "title": "Create Passenger Account",
+    "description": "Enter your information to create an account.",
+    "name_label": "Name",
+    "email_label": "Email",
+    "password_label": "Password",
+    "create_account_button": "Create account",
+    "signin_prompt": "Already have an account?",
+    "signin_link": "Sign in"
+  },
+  "dashboard": {
+    "title": "Available Buses",
+    "description": "Find your bus and track it in real-time.",
+    "departs_at": "Departs at",
+    "track_button": "Track",
+    "book_ticket_button": "Book Ticket"
+  },
+  "track_bus": {
+    "on_time": "On Time",
+    "free_wifi": "Free WiFi",
+    "ac": "AC",
+    "static_map_notice": "This is a static map placeholder. Live map requires an API key."
+  },
+  "book_ticket": {
+    "title": "Book Your Ticket",
+    "route_details_title": "Route Details",
+    "bus_number": "Bus Number",
+    "departure_time": "Departure Time",
+    "stops": "Stops",
+    "select_journey_title": "Select Your Journey",
+    "select_journey_desc": "Choose your boarding and destination points.",
+    "from_label": "From",
+    "from_placeholder": "Select a boarding stop",
+    "to_label": "To",
+    "to_placeholder": "Select a destination stop",
+    "confirm_button": "Confirm Booking (Dummy Pay)",
+    "confirming_button": "Confirming..."
+  },
+  "booking_confirmation": {
+    "title": "Booking Confirmed!",
+    "description": "Your e-ticket is ready. Show this QR code to the conductor.",
+    "eticket_title": "NMMT E-Ticket",
+    "passenger_label": "Passenger",
+    "booking_time_label": "Booking Time",
+    "bus_route_label": "Bus & Route",
+    "journey_label": "Journey"
+  },
+  "admin": {
+    "dashboard_title": "Admin Dashboard",
+    "analytics_tab": "Analytics",
+    "timetable_tab": "Timetable Management",
+    "total_bookings": "Total Bookings",
+    "from_last_month": "+20.1% from last month",
+    "active_buses": "Active Buses",
+    "across_routes": "Across {totalRoutes} routes",
+    "passenger_traffic": "Passenger Traffic",
+    "avg_occupancy_title": "Average Bus Occupancy",
+    "avg_occupancy_desc": "A snapshot of average occupancy per route for today.",
+    "bus_routes_title": "Bus Routes",
+    "bus_routes_desc": "Manage your bus routes and timetables.",
+    "upload_timetable_button": "Upload Timetable",
+    "route_id_header": "Route ID",
+    "route_name_header": "Route Name",
+    "stops_count_header": "Number of Stops",
+    "actions_header": "Actions",
+    "edit_button": "Edit"
+  },
+  "customer_service": {
+    "title": "Customer Service",
+    "contact_info_title": "Contact Information",
+    "contact_info_desc": "Reach out to our team for any assistance.",
+    "faq_title": "Frequently Asked Questions",
+    "faq_desc": "Find answers to common questions."
+  },
+  "contact_list": {
+    "title": "Contact List",
+    "card_title": "Official NMMT Contacts",
+    "card_desc": "Get in touch with the right person for your queries.",
+    "sr_no": "Sr. No",
+    "name": "Name",
+    "designation": "Designation",
+    "email": "Email",
+    "mobile": "Mobile Number"
+  },
+  "contact_roadmap": {
+    "title": "Contact Roadmap",
+    "card_title": "NMMT Organizational Chart"
+  },
+  "feedback": {
+    "title": "Submit Feedback",
+    "card_title": "Share Your Thoughts",
+    "card_desc": "Your feedback helps us improve our services.",
+    "name_label": "Full Name",
+    "email_label": "Email Address",
+    "bus_number_label": "Bus Number (Optional)",
+    "message_label": "Feedback Message",
+    "submit_button": "Submit Feedback",
+    "submitting_button": "Submitting...",
+    "success_title": "Success!",
+    "success_message": "Thank you for your feedback!"
+  },
+  "occupancy": {
+    "live_occupancy": "Live Occupancy",
+    "seats": "seats",
+    "ai_prediction": "AI Prediction",
+    "confidence": "{confidence} Confidence"
+  },
+  "chatbot": {
+    "title": "NMMT Assistant",
+    "greeting": "Hello! I'm the NMMT assistant. How can I help you today?",
+    "placeholder": "Ask a question...",
+    "error": "I'm having trouble connecting right now. Please try again later."
+  }
+}

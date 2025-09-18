@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -25,6 +26,7 @@ import {
 } from '@/components/ui/card';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { CheckCircle } from 'lucide-react';
+import { useTranslation } from '@/lib/i18n/use-translation';
 
 const feedbackSchema = z.object({
   name: z.string().min(1, 'Name is required.'),
@@ -37,6 +39,7 @@ type FeedbackFormValues = z.infer<typeof feedbackSchema>;
 
 export default function FeedbackForm() {
   const [submissionStatus, setSubmissionStatus] = useState<{ success: boolean; message: string } | null>(null);
+  const { t } = useTranslation();
 
   const form = useForm<FeedbackFormValues>({
     resolver: zodResolver(feedbackSchema),
@@ -60,8 +63,8 @@ export default function FeedbackForm() {
     return (
        <Alert variant="default" className="border-green-500 bg-green-500/10 text-green-800 dark:text-green-200">
         <CheckCircle className="h-4 w-4 !text-green-500" />
-        <AlertTitle>Success!</AlertTitle>
-        <AlertDescription>{submissionStatus.message}</AlertDescription>
+        <AlertTitle>{t('feedback.success_title')}</AlertTitle>
+        <AlertDescription>{t('feedback.success_message')}</AlertDescription>
       </Alert>
     );
   }
@@ -69,9 +72,9 @@ export default function FeedbackForm() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Share Your Thoughts</CardTitle>
+        <CardTitle>{t('feedback.card_title')}</CardTitle>
         <CardDescription>
-          Your feedback helps us improve our services.
+          {t('feedback.card_desc')}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -82,7 +85,7 @@ export default function FeedbackForm() {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Full Name</FormLabel>
+                  <FormLabel>{t('feedback.name_label')}</FormLabel>
                   <FormControl>
                     <Input placeholder="John Doe" {...field} />
                   </FormControl>
@@ -95,7 +98,7 @@ export default function FeedbackForm() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email Address</FormLabel>
+                  <FormLabel>{t('feedback.email_label')}</FormLabel>
                   <FormControl>
                     <Input type="email" placeholder="m@example.com" {...field} />
                   </FormControl>
@@ -108,7 +111,7 @@ export default function FeedbackForm() {
               name="busNumber"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Bus Number (Optional)</FormLabel>
+                  <FormLabel>{t('feedback.bus_number_label')}</FormLabel>
                   <FormControl>
                     <Input placeholder="MH-43-1234" {...field} />
                   </FormControl>
@@ -121,7 +124,7 @@ export default function FeedbackForm() {
               name="message"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Feedback Message</FormLabel>
+                  <FormLabel>{t('feedback.message_label')}</FormLabel>
                   <FormControl>
                     <Textarea
                       placeholder="Tell us what you think..."
@@ -134,7 +137,7 @@ export default function FeedbackForm() {
               )}
             />
             <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
-              {form.formState.isSubmitting ? 'Submitting...' : 'Submit Feedback'}
+              {form.formState.isSubmitting ? t('feedback.submitting_button') : t('feedback.submit_button')}
             </Button>
             {submissionStatus && !submissionStatus.success && (
                 <Alert variant="destructive">

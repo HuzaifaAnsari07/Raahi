@@ -1,14 +1,19 @@
+
+'use client';
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useTranslation } from "@/lib/i18n/use-translation";
 import Image from "next/image";
 
 export default function ContactRoadmapPage() {
+  const { t } = useTranslation();
   return (
     <div className="flex flex-col gap-8">
-      <h1 className="text-3xl font-bold tracking-tight">Contact Roadmap</h1>
+      <h1 className="text-3xl font-bold tracking-tight">{t('contact_roadmap.title')}</h1>
       <Card>
         <CardHeader>
-          <CardTitle>NMMT Organizational Chart</CardTitle>
+          <CardTitle>{t('contact_roadmap.card_title')}</CardTitle>
         </CardHeader>
         <CardContent>
           <ScrollArea className="h-[600px] w-full rounded-md border p-4">
