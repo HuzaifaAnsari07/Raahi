@@ -3,18 +3,34 @@
 
 import { APIProvider, Map as GoogleMap, AdvancedMarker } from '@vis.gl/react-google-maps';
 import { BusIcon } from './icons';
+import { useEffect, useState } from 'react';
 
 export default function Map({ busPosition }: { busPosition: { lat: number, lng: number } }) {
-  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+  const [apiKey, setApiKey] = useState<string | undefined>(undefined);
+  const [isClient, setIsClient] = useState(false);
 
+  useEffect(() => {
+    setIsClient(true);
+    setApiKey(process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY);
+  }, []);
+
+  if (!isClient) {
+    // Return a placeholder or null during server-side rendering or before hydration.
+    return (
+        <div className="flex h-full w-full items-center justify-center bg-muted">
+            <p>Loading map...</p>
+        </div>
+    );
+  }
+  
   if (!apiKey) {
     return (
       <div className="flex h-full w-full items-center justify-center bg-muted p-4 text-center">
-        <p className="text-destructive-foreground bg-destructive p-4 rounded-md">
-          <b>Google Maps API Key is missing.</b>
-          <br />
-          Please add it to your .env file to enable map functionality.
-        </p>
+        <div className="text-destructive-foreground bg-destructive p-4 rounded-md">
+          <p className="font-bold">Google Maps API Key is missing.</p>
+          <p>Please add it to your .env.local file to enable map functionality.</p>
+          <code className="mt-2 block bg-black/20 p-1 rounded text-sm">NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=YOUR_API_KEY_HERE</code>
+        </div>
       </div>
     );
   }
