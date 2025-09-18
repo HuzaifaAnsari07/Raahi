@@ -39,6 +39,19 @@ export default function LoginPage() {
     const result = await navigator.permissions.query({ name: 'geolocation' });
     if (result.state === 'granted') {
       setHasLocationPermission(true);
+      try {
+        const position = await new Promise<GeolocationPosition>((resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(resolve, reject, {
+            timeout: 10000,
+          });
+        });
+        sessionStorage.setItem('userLocation', JSON.stringify({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        }));
+      } catch (error) {
+        console.error("Could not get user location", error);
+      }
     } else {
       setHasLocationPermission(false);
     }
@@ -59,11 +72,15 @@ export default function LoginPage() {
 
     setIsCheckingPermission(true);
     try {
-      await new Promise<GeolocationPosition>((resolve, reject) => {
+      const position = await new Promise<GeolocationPosition>((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, reject, {
           timeout: 10000,
         });
       });
+      sessionStorage.setItem('userLocation', JSON.stringify({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      }));
       setHasLocationPermission(true);
     } catch (error) {
       console.error('Error getting location:', error);

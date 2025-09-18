@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -47,7 +48,7 @@ export default function TrackBusClient({ bus, route, busImage }: TrackBusClientP
             </div>
         </div>
         <div className="absolute bottom-4 left-4 bg-background/80 p-2 rounded-lg text-xs shadow-md backdrop-blur-sm">
-          Live map requires a Google Maps API key. This is a static placeholder.
+          This is a static map placeholder. Live map requires an API key.
         </div>
       </div>
       <div className="flex flex-col gap-6">
