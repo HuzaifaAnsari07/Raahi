@@ -1,3 +1,4 @@
+
 'use server';
 
 /**
@@ -39,6 +40,8 @@ const prompt = ai.definePrompt({
   output: {schema: AskChatbotOutputSchema},
   system: `You are a friendly and helpful chatbot for the NMMT (Navi Mumbai Municipal Transport) bus service. Your goal is to answer user questions about bus routes, schedules, and general information.
 
+You MUST detect the language of the user's question and respond in the same language.
+
 You have access to the following data about the bus service:
 
 Bus Routes:
@@ -58,7 +61,7 @@ const askChatbotFlow = ai.defineFlow(
     outputSchema: AskChatbotOutputSchema,
   },
   async input => {
-    const {output} = await prompt({message: input.message}, {history: input.history});
+    const {output} = await prompt(input);
     return {response: output!.response};
   }
 );

@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
@@ -38,17 +39,21 @@ export default function ChatbotWidget() {
     if (input.trim() === '' || isLoading) return;
 
     const userMessage: Message = { sender: 'user', text: input };
-    setMessages(prev => [...prev, userMessage]);
+    const newMessages = [...messages, userMessage];
+    setMessages(newMessages);
     setInput('');
     setIsLoading(true);
 
-    const history: GenkitMessage[] = messages.map(msg => ({
+    const history: GenkitMessage[] = newMessages.map(msg => ({
       role: msg.sender === 'user' ? 'user' : 'model',
       content: [{ text: msg.text }],
     }));
 
     try {
-      const result = await askChatbot({ message: input, history });
+      const result = await askChatbot({
+        message: input,
+        history,
+      });
       const botResponse: Message = { sender: 'bot', text: result.response };
       setMessages(prev => [...prev, botResponse]);
     } catch (error) {
