@@ -23,30 +23,45 @@ export default function LoginPage() {
   const [hasLocationPermission, setHasLocationPermission] = useState(false);
   const [isCheckingPermission, setIsCheckingPermission] = useState(true);
 
-  useEffect(() => {
-    const getLocationPermission = async () => {
-      setIsCheckingPermission(true);
-      if (navigator.geolocation) {
-        try {
-          const position = await new Promise<GeolocationPosition>((resolve, reject) => {
-            navigator.geolocation.getCurrentPosition(resolve, reject, {
-              timeout: 10000,
-            });
-          });
-          setHasLocationPermission(true);
-          console.log('Location:', position.coords.latitude, position.coords.longitude);
-        } catch (error) {
-          console.error('Error getting location:', error);
-          setHasLocationPermission(false);
-        }
+  const checkInitialPermission = async () => {
+    setIsCheckingPermission(true);
+    if (navigator.permissions) {
+      const result = await navigator.permissions.query({ name: 'geolocation' });
+      if (result.state === 'granted') {
+        setHasLocationPermission(true);
       } else {
         setHasLocationPermission(false);
       }
-      setIsCheckingPermission(false);
-    };
-
-    getLocationPermission();
+    } else {
+      // Fallback for browsers that don't support Permissions API
+      setHasLocationPermission(false);
+    }
+    setIsCheckingPermission(false);
+  };
+  
+  useEffect(() => {
+    checkInitialPermission();
   }, []);
+
+  const requestLocationPermission = async () => {
+    setIsCheckingPermission(true);
+    if (navigator.geolocation) {
+      try {
+        await new Promise<GeolocationPosition>((resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(resolve, reject, {
+            timeout: 10000,
+          });
+        });
+        setHasLocationPermission(true);
+      } catch (error) {
+        console.error('Error getting location:', error);
+        setHasLocationPermission(false);
+      }
+    } else {
+      setHasLocationPermission(false);
+    }
+    setIsCheckingPermission(false);
+  };
 
   const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -106,12 +121,20 @@ export default function LoginPage() {
                     </AlertDescription>
                 </Alert>
               ) : (
-                <Alert variant="destructive">
-                    <MapPin className="h-4 w-4" />
-                    <AlertTitle>Location Access Required</AlertTitle>
-                    <AlertDescription>
-                        Please enable location permissions in your browser to continue.
-                    </AlertDescription>
+                <Alert variant="destructive" className="flex flex-col items-start gap-4">
+                  <div className="flex items-start">
+                      <MapPin className="h-4 w-4" />
+                      <div className="ml-4">
+                          <AlertTitle>Location Access Required</AlertTitle>
+                          <AlertDescription>
+                              Please enable location permissions to continue.
+                          </AlertDescription>
+                      </div>
+                  </div>
+                  <Button type="button" variant="secondary" onClick={requestLocationPermission} className="w-full">
+                      <MapPin className="mr-2 h-4 w-4" />
+                      Enable Location
+                  </Button>
                 </Alert>
               )}
             </div>
