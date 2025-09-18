@@ -18,12 +18,6 @@ import { useRouter } from 'next/navigation';
 export default function LoginPage() {
   const router = useRouter();
 
-  const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    // Mock login logic
-    router.push('/dashboard');
-  };
-
   return (
     <div className="flex flex-col items-center gap-6">
       <div className="flex items-center gap-2 text-2xl font-bold text-primary">
@@ -43,7 +37,6 @@ export default function LoginPage() {
             Enter your email below to login to your account.
           </CardDescription>
         </CardHeader>
-        <form onSubmit={handleLogin}>
           <CardContent className="grid gap-4">
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
@@ -64,8 +57,8 @@ export default function LoginPage() {
             </div>
           </CardContent>
           <CardFooter className="flex flex-col gap-4">
-            <Button className="w-full" type="submit">
-              Sign in
+            <Button className="w-full" asChild>
+                <Link href="/dashboard">Sign in</Link>
             </Button>
             <div className="text-center text-sm">
               Don&apos;t have an account?{' '}
@@ -74,7 +67,6 @@ export default function LoginPage() {
               </Link>
             </div>
           </CardFooter>
-        </form>
       </Card>
     </div>
   );
