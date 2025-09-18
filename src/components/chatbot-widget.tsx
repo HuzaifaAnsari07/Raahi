@@ -1,13 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { MessageSquare, Send, Bot, User, X } from 'lucide-react';
+import { MessageSquare, Send, Bot, User, X, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { faqs } from '@/lib/data';
+import { askChatbot } from '@/ai/flows/ask-chatbot';
+import type { Message as GenkitMessage } from 'genkit';
+
 
 type Message = {
   text: string;
@@ -20,28 +22,42 @@ export default function ChatbotWidget() {
     { sender: 'bot', text: "Hello! I'm the NMMT assistant. How can I help you today?" },
   ]);
   const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const scrollAreaRef = useRef<HTMLDivElement>(null);
 
-  const handleSend = () => {
-    if (input.trim() === '') return;
+  useEffect(() => {
+    if (scrollAreaRef.current) {
+      scrollAreaRef.current.scrollTo({
+        top: scrollAreaRef.current.scrollHeight,
+        behavior: 'smooth',
+      });
+    }
+  }, [messages]);
+  
+  const handleSend = async () => {
+    if (input.trim() === '' || isLoading) return;
 
     const userMessage: Message = { sender: 'user', text: input };
     setMessages(prev => [...prev, userMessage]);
-
-    // Simple FAQ-based response logic
-    const matchingFaq = faqs.find(faq => input.toLowerCase().includes(faq.question.toLowerCase().split(' ')[0]));
-    
-    let botResponse: Message;
-    if (matchingFaq) {
-      botResponse = { sender: 'bot', text: matchingFaq.answer };
-    } else {
-      botResponse = { sender: 'bot', text: "I'm sorry, I don't have an answer for that. You can try asking about ticket booking, bus tracking, or our helpline number." };
-    }
-    
-    setTimeout(() => {
-        setMessages(prev => [...prev, botResponse]);
-    }, 500);
-
     setInput('');
+    setIsLoading(true);
+
+    const history: GenkitMessage[] = messages.map(msg => ({
+      role: msg.sender === 'user' ? 'user' : 'model',
+      content: [{ text: msg.text }],
+    }));
+
+    try {
+      const result = await askChatbot({ message: input, history });
+      const botResponse: Message = { sender: 'bot', text: result.response };
+      setMessages(prev => [...prev, botResponse]);
+    } catch (error) {
+      console.error("Chatbot error:", error);
+      const errorResponse: Message = { sender: 'bot', text: "I'm having trouble connecting right now. Please try again later." };
+      setMessages(prev => [...prev, errorResponse]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -71,7 +87,7 @@ export default function ChatbotWidget() {
               <X className="h-5 w-5" />
             </button>
           </header>
-          <ScrollArea className="flex-1 p-4">
+          <ScrollArea className="flex-1 p-4" ref={scrollAreaRef}>
             <div className="space-y-4">
               {messages.map((message, index) => (
                 <div
@@ -95,6 +111,14 @@ export default function ChatbotWidget() {
                    {message.sender === 'user' && <Avatar sender="user" />}
                 </div>
               ))}
+               {isLoading && (
+                <div className="flex items-end gap-2 justify-start">
+                  <Avatar sender="bot" />
+                  <div className="max-w-[75%] rounded-lg px-3 py-2 text-sm bg-muted flex items-center">
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  </div>
+                </div>
+              )}
             </div>
           </ScrollArea>
           <footer className="p-3 border-t">
@@ -111,8 +135,9 @@ export default function ChatbotWidget() {
                 placeholder="Ask a question..."
                 className="flex-1"
                 autoComplete='off'
+                disabled={isLoading}
               />
-              <Button type="submit" size="icon" disabled={!input.trim()}>
+              <Button type="submit" size="icon" disabled={!input.trim() || isLoading}>
                 <Send className="h-4 w-4" />
               </Button>
             </form>
