@@ -20,7 +20,7 @@ const AskChatbotInputSchema = z.object({
 });
 export type AskChatbotInput = z.infer<typeof AskChatbotInputSchema>;
 
-export const AskChatbotOutputSchema = z.object({
+const AskChatbotOutputSchema = z.object({
   response: z
     .string()
     .describe('The chatbot response to the user message.'),
