@@ -26,39 +26,42 @@ export default function OccupancyPredictor({ bus, route }: { bus: Bus, route: Ro
     error: null,
   });
   
-  const [currentTime, setCurrentTime] = useState<string | null>(null);
-  const [dayOfWeek, setDayOfWeek] = useState<string | null>(null);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    const now = new Date();
-    setCurrentTime(now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false }));
-    setDayOfWeek(now.toLocaleDateString('en-US', { weekday: 'long' }));
+    setIsClient(true);
   }, []);
 
   useEffect(() => {
-    if (!currentTime || !dayOfWeek) return;
+    if (!isClient) return;
 
     const fetchOccupancy = async () => {
       setOccupancy({ loading: true, prediction: null, error: null });
       try {
+        const now = new Date();
+        const currentTime = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+        const dayOfWeek = now.toLocaleDateString('en-US', { weekday: 'long' });
+        
         const input: PredictBusOccupancyInput = {
           routeId: route.id,
           time: currentTime,
           dayOfWeek: dayOfWeek,
           historicalOccupancyData: 'Normally 70% full during this time, but lighter on weekends.',
-          currentBookings: Math.floor(Math.random() * 10) + 5, // Dummy data
+          currentBookings: Math.floor(Math.random() * 10) + 5, // Dummy data generated on client
         };
+
         const prediction = await predictBusOccupancy(input);
         setOccupancy({ loading: false, prediction, error: null });
       } catch (e) {
-        setOccupancy({ loading: false, prediction: null, error: 'Failed to predict occupancy.' });
+        const errorMessage = e instanceof Error ? e.message : 'Failed to predict occupancy.';
+        setOccupancy({ loading: false, prediction: null, error: errorMessage });
       }
     };
 
     fetchOccupancy();
-  }, [bus.id, route.id, currentTime, dayOfWeek]);
+  }, [bus.id, route.id, isClient]);
 
-  if (occupancy.loading) {
+  if (!isClient || occupancy.loading) {
     return <Skeleton className="h-10 w-full" />;
   }
 
