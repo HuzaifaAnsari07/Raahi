@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Card,
   CardContent,
@@ -35,6 +37,9 @@ import {
 } from '@/components/ui/chart';
 import { Bar, CartesianGrid, XAxis, YAxis, BarChart as RechartsBarChart } from 'recharts';
 import { Button } from '@/components/ui/button';
+import { useRef } from 'react';
+import { useToast } from '@/hooks/use-toast';
+import { useRouter } from 'next/navigation';
 
 const chartData = [
   { route: "Route 10", occupancy: 35, fill: "var(--color-chart-1)" },
@@ -56,6 +61,34 @@ export default function AdminDashboardPage() {
   const totalBookings = bookings.length;
   const totalBuses = buses.length;
   const totalRoutes = busRoutes.length;
+  
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const { toast } = useToast();
+  const router = useRouter();
+
+  const handleUploadClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      toast({
+        title: "File Selected",
+        description: `${file.name} is ready for upload. (This is a mock action)`,
+      });
+      // In a real app, you would handle the file upload here.
+    }
+  };
+  
+  const handleEditClick = (routeId: string) => {
+    toast({
+        title: "Redirecting...",
+        description: `Navigating to edit page for route ${routeId}. (This is a mock action)`,
+    });
+    // In a real app, you would navigate to an actual edit page
+    // router.push(`/admin/timetable/edit/${routeId}`);
+  };
 
   return (
     <div className="flex flex-col gap-8">
@@ -144,7 +177,14 @@ export default function AdminDashboardPage() {
                 <CardTitle>Bus Routes</CardTitle>
                 <CardDescription>Manage your bus routes and timetables.</CardDescription>
               </div>
-              <Button>Upload Timetable</Button>
+              <Button onClick={handleUploadClick}>Upload Timetable</Button>
+              <input
+                  type="file"
+                  ref={fileInputRef}
+                  onChange={handleFileChange}
+                  className="hidden"
+                  accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                />
             </CardHeader>
             <CardContent>
               <Table>
@@ -163,7 +203,7 @@ export default function AdminDashboardPage() {
                       <TableCell>{route.name}</TableCell>
                       <TableCell>{route.stops.length}</TableCell>
                       <TableCell>
-                        <Button variant="outline" size="sm">Edit</Button>
+                        <Button variant="outline" size="sm" onClick={() => handleEditClick(route.id)}>Edit</Button>
                       </TableCell>
                     </TableRow>
                   ))}
