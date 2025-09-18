@@ -9,7 +9,7 @@ export default function Map({ busPosition }: { busPosition: { lat: number, lng: 
   if (!apiKey) {
     return (
       <div className="flex h-full w-full items-center justify-center bg-muted">
-        <p>Google Maps API Key is missing.</p>
+        <p>Google Maps API Key is missing. Please add it to your .env file.</p>
       </div>
     );
   }
@@ -19,7 +19,9 @@ export default function Map({ busPosition }: { busPosition: { lat: number, lng: 
       <GoogleMap
         style={{ width: '100%', height: '100%' }}
         defaultCenter={{ lat: 19.0760, lng: 72.8777 }}
+        center={busPosition}
         defaultZoom={13}
+        zoom={15}
         gestureHandling={'greedy'}
         disableDefaultUI={true}
         mapId={'f1b74e693259a415'}
