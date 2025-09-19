@@ -14,8 +14,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { contacts, faqs } from '@/lib/data';
-import { Mail, Phone, AlertTriangle } from 'lucide-react';
+import { faqs } from '@/lib/data';
+import { Phone, AlertTriangle } from 'lucide-react';
 import { useTranslation } from '@/lib/i18n/use-translation';
 import { Button } from '@/components/ui/button';
 
@@ -44,37 +44,9 @@ export default function CustomerServicePage() {
         </CardContent>
       </Card>
 
-      <div className="grid gap-8 lg:grid-cols-2">
-        {/* Contact List */}
-        <Card className="lg:col-span-1">
-          <CardHeader>
-            <CardTitle>{t('customer_service.contact_info_title')}</CardTitle>
-            <CardDescription>
-              {t('customer_service.contact_info_desc')}
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {contacts.map(contact => (
-              <div key={contact.id} className="flex items-start justify-between rounded-lg border p-3">
-                <div>
-                  <p className="font-semibold">{contact.name}</p>
-                  <p className="text-sm text-muted-foreground">{contact.designation}</p>
-                </div>
-                <div className="flex items-center gap-3">
-                   <a href={`mailto:${contact.email}`} className="text-muted-foreground hover:text-primary">
-                    <Mail className="h-5 w-5" />
-                   </a>
-                   <a href={`tel:${contact.mobile}`} className="text-muted-foreground hover:text-primary">
-                    <Phone className="h-5 w-5" />
-                   </a>
-                </div>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-
+      <div className="grid gap-8 lg:grid-cols-1">
         {/* FAQ Section */}
-        <Card className="lg:col-span-1">
+        <Card>
           <CardHeader>
             <CardTitle>{t('customer_service.faq_title')}</CardTitle>
             <CardDescription>
