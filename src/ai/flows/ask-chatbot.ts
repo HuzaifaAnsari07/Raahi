@@ -8,7 +8,6 @@
 
 import {ai} from '@/ai/genkit';
 import {busRoutes, stops} from '@/lib/data';
-import type {Message} from 'genkit';
 import {
   AskChatbotInput,
   AskChatbotInputSchema,
@@ -57,6 +56,9 @@ const askChatbotFlow = ai.defineFlow(
     outputSchema: AskChatbotOutputSchema,
   },
   async (history) => {
+    if (history.length === 0) {
+        return {response: "I'm having trouble connecting right now. Please try again later."};
+    }
     const {output} = await prompt(history);
     return {response: output?.response ?? "I'm having trouble connecting right now. Please try again later."};
   }
