@@ -33,7 +33,7 @@ export default function AppHeader() {
             height={32}
             className="h-6 w-6"
           />
-          <span className="font-headline text-lg">NMMT Tracker</span>
+          <span className="font-headline text-lg">NMMT Raahi</span>
         </Link>
       </div>
 

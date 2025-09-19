@@ -37,7 +37,7 @@ export default function RegisterPage() {
           height={40}
           className="h-8 w-8"
         />
-        <h1 className="font-headline">NMMT Tracker</h1>
+        <h1 className="font-headline">NMMT Raahi</h1>
       </div>
       <Card className="w-full max-w-sm">
         <CardHeader>

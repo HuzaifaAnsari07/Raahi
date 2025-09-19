@@ -5,7 +5,7 @@ import { LanguageProvider } from '@/lib/i18n/provider';
 import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
-  title: 'NMMT Tracker',
+  title: 'NMMT Raahi',
   description: 'NMMT Smart Transport Real-Time Tracking Website',
 };
 

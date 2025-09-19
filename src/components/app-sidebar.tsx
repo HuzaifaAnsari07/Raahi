@@ -54,7 +54,7 @@ export default function AppSidebar() {
               className="h-6 w-6 rounded-sm"
             />
           </div>
-          <span className="font-headline text-lg font-bold">NMMT Tracker</span>
+          <span className="font-headline text-lg font-bold">NMMT Raahi</span>
         </div>
       </SidebarHeader>
 
