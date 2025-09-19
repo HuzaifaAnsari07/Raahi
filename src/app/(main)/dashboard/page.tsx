@@ -27,16 +27,14 @@ export default function DashboardPage() {
   const [favorites, setFavorites] = useState<string[]>([]);
 
   const toggleFavorite = (routeId: string) => {
-    setFavorites(prev => {
-      const isFavorite = prev.includes(routeId);
-      if (isFavorite) {
-        toast({ title: "Route removed from favorites." });
-        return prev.filter(id => id !== routeId);
-      } else {
-        toast({ title: "Route added to favorites!" });
-        return [...prev, routeId];
-      }
-    });
+    const isFavorite = favorites.includes(routeId);
+    if (isFavorite) {
+      setFavorites(prev => prev.filter(id => id !== routeId));
+      toast({ title: "Route removed from favorites." });
+    } else {
+      setFavorites(prev => [...prev, routeId]);
+      toast({ title: "Route added to favorites!" });
+    }
   };
 
   const favoriteBuses = buses.filter(bus => {
