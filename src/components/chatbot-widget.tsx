@@ -45,13 +45,16 @@ export default function ChatbotWidget() {
     setInput('');
     setIsLoading(true);
 
-    const history: GenkitMessage[] = [...messages, userMessage].map(msg => ({
+    const currentHistory: GenkitMessage[] = messages.map(msg => ({
       role: msg.sender === 'user' ? 'user' : 'model',
       content: [{ text: msg.text }],
     }));
+    
+    // Add the new user message to the history for the API call
+    const updatedHistory = [...currentHistory, { role: 'user' as const, content: [{ text: userMessage.text }] }];
 
     try {
-      const result = await askChatbot({ history });
+      const result = await askChatbot({ history: updatedHistory });
       const botResponse: Message = { sender: 'bot', text: result.response };
       setMessages(prev => [...prev, botResponse]);
     } catch (error) {
