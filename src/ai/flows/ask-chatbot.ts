@@ -19,9 +19,13 @@ import {
 export async function askChatbot(
   input: AskChatbotInput
 ): Promise<AskChatbotOutput> {
+  const history = input.slice(0, -1);
+  const lastUserMessage = input[input.length - 1];
+
   const llmResponse = await ai.generate({
     model: 'googleai/gemini-2.5-flash',
-    prompt: input,
+    prompt: lastUserMessage.content[0].text,
+    history: history,
     system: `You are a helpful and friendly chatbot for the NMMT Raahi bus transport app. Your goal is to assist users with their questions about bus routes, schedules, and using the app.
 
       Keep your responses concise and to the point.
