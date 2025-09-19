@@ -27,8 +27,10 @@ export default function ChatbotWidget() {
 
    // Set initial greeting only once when component mounts
   useEffect(() => {
-    setMessages([{ sender: 'bot', text: t('chatbot.greeting') }]);
-  }, [t]);
+    if (messages.length === 0) {
+      setMessages([{ sender: 'bot', text: t('chatbot.greeting') }]);
+    }
+  }, [t, messages.length]);
 
 
   useEffect(() => {
