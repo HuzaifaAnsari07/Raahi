@@ -57,10 +57,8 @@ export default function ChatbotWidget() {
     }));
 
     try {
-      console.log('Sending to API:', JSON.stringify(history, null, 2));
       const result = await askChatbot(history);
-      console.log('Raw API Response:', result);
-
+      
       const botResponseText = result?.response ?? t('chatbot.error');
       
       const botResponse: DisplayMessage = { sender: 'bot', text: botResponseText };
