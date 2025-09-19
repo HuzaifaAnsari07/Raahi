@@ -21,9 +21,8 @@ export async function askChatbot(
 ): Promise<AskChatbotOutput> {
   const llmResponse = await ai.generate({
     model: 'googleai/gemini-2.5-flash',
-    prompt: {
-      messages: input,
-      system: `You are a helpful and friendly chatbot for the NMMT Raahi bus transport app. Your goal is to assist users with their questions about bus routes, schedules, and using the app.
+    prompt: input,
+    system: `You are a helpful and friendly chatbot for the NMMT Raahi bus transport app. Your goal is to assist users with their questions about bus routes, schedules, and using the app.
 
       Keep your responses concise and to the point.
 
@@ -39,7 +38,6 @@ export async function askChatbot(
         - The app has a customer service section with FAQs and emergency contacts.
       
       When asked about something you don't know, politely say that you cannot provide that information.`,
-    },
     output: {
       schema: AskChatbotOutputSchema,
     },
