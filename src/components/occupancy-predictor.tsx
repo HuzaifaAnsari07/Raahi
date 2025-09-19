@@ -38,31 +38,23 @@ export default function OccupancyPredictor({ bus, route }: { bus: Bus, route: Ro
   useEffect(() => {
     if (!isClient) return;
 
-    const fetchOccupancy = async () => {
+    const generateMockOccupancy = () => {
       setOccupancy({ loading: true, prediction: null, error: null });
-      try {
-        const now = new Date();
-        const currentTime = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
-        const dayOfWeek = now.toLocaleDateString('en-US', { weekday: 'long' });
-        
-        const input: PredictBusOccupancyInput = {
-          routeId: route.id,
-          time: currentTime,
-          dayOfWeek: dayOfWeek,
-          historicalOccupancyData: 'Normally 70% full during this time, but lighter on weekends.',
-          currentBookings: Math.floor(Math.random() * 10) + 5, // Dummy data generated on client
-        };
-
-        const prediction = await predictBusOccupancy(input);
-        setOccupancy({ loading: false, prediction, error: null });
-      } catch (e) {
-        const errorMessage = e instanceof Error ? e.message : 'Failed to predict occupancy.';
-        setOccupancy({ loading: false, prediction: null, error: errorMessage });
-      }
+      // To prevent API quota errors, generate a mock prediction on the client.
+      const mockOccupancy = Math.floor(Math.random() * (bus.totalSeats - 5)) + 5; // Random value between 5 and totalSeats
+      const mockPrediction = {
+        predictedOccupancy: mockOccupancy,
+        confidence: 'High',
+        reason: 'Mock data generated to avoid API rate limits.',
+      };
+      // Use a timeout to simulate network latency
+      setTimeout(() => {
+        setOccupancy({ loading: false, prediction: mockPrediction, error: null });
+      }, 500);
     };
 
-    fetchOccupancy();
-  }, [bus.id, route.id, isClient]);
+    generateMockOccupancy();
+  }, [bus.id, route.id, bus.totalSeats, isClient]);
 
   if (!isClient || occupancy.loading) {
     return <Skeleton className="h-10 w-full" />;
@@ -90,7 +82,7 @@ export default function OccupancyPredictor({ bus, route }: { bus: Bus, route: Ro
           <Users className="mr-2 h-4 w-4 text-primary" />
           <span>{t('occupancy.live_occupancy')}</span>
         </div>
-        <span className="font-semibold">{predictedOccupancy} / {bus.totalSeats} {t('occupancy.seats')}</span>
+        <span className="font-semibold">{predictedOccupancy} / {bus.totalSeats} {t('occupancy.onboard')}</span>
       </div>
       <Progress value={occupancyPercentage} indicatorClassName={progressColorClass} />
     </div>
