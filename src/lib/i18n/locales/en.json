@@ -133,9 +133,7 @@
   },
   "occupancy": {
     "live_occupancy": "Live Occupancy",
-    "seats": "seats",
-    "ai_prediction": "AI Prediction",
-    "confidence": "{confidence} Confidence"
+    "seats": "onboard"
   },
   "chatbot": {
     "title": "NMMT Assistant",

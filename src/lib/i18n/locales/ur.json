@@ -133,9 +133,7 @@
   },
   "occupancy": {
     "live_occupancy": "لائیو occupancy",
-    "seats": "نشستیں",
-    "ai_prediction": "AI پیشن گوئی",
-    "confidence": "{confidence} اعتماد"
+    "seats": "آن بورڈ"
   },
   "chatbot": {
     "title": "NMMT اسسٹنٹ",

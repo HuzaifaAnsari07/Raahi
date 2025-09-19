@@ -133,9 +133,7 @@
   },
   "occupancy": {
     "live_occupancy": "लाइव अधिभोग",
-    "seats": "सीटें",
-    "ai_prediction": "एआई भविष्यवाणी",
-    "confidence": "{confidence} आत्मविश्वास"
+    "seats": "ऑनबोर्ड"
   },
   "chatbot": {
     "title": "एनएमएमटी सहायक",

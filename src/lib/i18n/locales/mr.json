@@ -133,9 +133,7 @@
   },
   "occupancy": {
     "live_occupancy": "लाइव्ह गर्दी",
-    "seats": "जागा",
-    "ai_prediction": "एआय भविष्यवाणी",
-    "confidence": "{confidence} आत्मविश्वास"
+    "seats": "ऑनबोर्ड"
   },
   "chatbot": {
     "title": "NMMT सहाय्यक",
