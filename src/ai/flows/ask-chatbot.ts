@@ -12,16 +12,14 @@
 import {ai} from '@/ai/genkit';
 import {
   AskChatbotInput,
-  AskChatbotInputSchema,
   AskChatbotOutput,
   AskChatbotOutputSchema,
 } from '@/ai/types';
-import {generate} from 'genkit';
 
 export async function askChatbot(
   input: AskChatbotInput
 ): Promise<AskChatbotOutput> {
-  const llmResponse = await generate({
+  const llmResponse = await ai.generate({
     model: 'googleai/gemini-2.5-flash',
     prompt: {
       messages: input,
