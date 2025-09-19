@@ -20,6 +20,7 @@ import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
 import { Separator } from '@/components/ui/separator';
+import type { Route as RouteType } from '@/lib/types';
 
 export default function DashboardPage() {
   const { t } = useTranslation();
@@ -28,19 +29,24 @@ export default function DashboardPage() {
 
   const toggleFavorite = (routeId: string) => {
     const isFavorite = favorites.includes(routeId);
+    let newFavorites;
     if (isFavorite) {
-      setFavorites(prev => prev.filter(id => id !== routeId));
+      newFavorites = favorites.filter(id => id !== routeId);
       toast({ title: "Route removed from favorites." });
     } else {
-      setFavorites(prev => [...prev, routeId]);
+      newFavorites = [...favorites, routeId];
       toast({ title: "Route added to favorites!" });
     }
+    setFavorites(newFavorites);
   };
+  
+  const favoriteRoutes: RouteType[] = busRoutes.filter(route => favorites.includes(route.id));
 
-  const favoriteBuses = buses.filter(bus => {
-    const route = busRoutes.find(r => r.id === bus.routeId);
-    return route && favorites.includes(route.id);
-  });
+  // Find the next available bus for each favorite route
+  const favoriteBuses = favoriteRoutes.map(route => {
+    return buses.find(bus => bus.routeId === route.id);
+  }).filter(bus => bus !== undefined);
+
 
   return (
     <div className="flex flex-col gap-8">
@@ -56,6 +62,7 @@ export default function DashboardPage() {
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {favoriteBuses.map((bus) => {
+              if (!bus) return null;
               const route = busRoutes.find((r) => r.id === bus.routeId);
               if (!route) return null;
 
