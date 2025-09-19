@@ -28,24 +28,26 @@ export default function DashboardPage() {
   const [favorites, setFavorites] = useState<string[]>([]);
 
   const toggleFavorite = (routeId: string) => {
-    const isFavorite = favorites.includes(routeId);
-    let newFavorites;
-    if (isFavorite) {
-      newFavorites = favorites.filter(id => id !== routeId);
-      toast({ title: "Route removed from favorites." });
-    } else {
-      newFavorites = [...favorites, routeId];
-      toast({ title: "Route added to favorites!" });
-    }
-    setFavorites(newFavorites);
+    setFavorites(prevFavorites => {
+      const isFavorite = prevFavorites.includes(routeId);
+      if (isFavorite) {
+        toast({ title: "Route removed from favorites." });
+        return prevFavorites.filter(id => id !== routeId);
+      } else {
+        toast({ title: "Route added to favorites!" });
+        return [...prevFavorites, routeId];
+      }
+    });
   };
-  
-  const favoriteRoutes: RouteType[] = busRoutes.filter(route => favorites.includes(route.id));
 
+  const favoriteRoutes = busRoutes.filter(route => favorites.includes(route.id));
+  
   // Find the next available bus for each favorite route
-  const favoriteBuses = favoriteRoutes.map(route => {
-    return buses.find(bus => bus.routeId === route.id);
-  }).filter(bus => bus !== undefined);
+  const favoriteBuses = favoriteRoutes
+    .map(route => {
+      return buses.find(bus => bus.routeId === route.id);
+    })
+    .filter((bus): bus is NonNullable<typeof bus> => bus !== undefined);
 
 
   return (
@@ -62,7 +64,6 @@ export default function DashboardPage() {
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {favoriteBuses.map((bus) => {
-              if (!bus) return null;
               const route = busRoutes.find((r) => r.id === bus.routeId);
               if (!route) return null;
 
