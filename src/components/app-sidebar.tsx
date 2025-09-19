@@ -21,6 +21,7 @@ import {
   LifeBuoy,
   Phone,
   MessageSquare,
+  BookOpenCheck,
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -143,6 +144,18 @@ export default function AppSidebar() {
               <Link href="/feedback">
                 <MessageSquare />
                 <span>{t('sidebar.feedback')}</span>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+          <SidebarMenuItem>
+            <SidebarMenuButton
+              asChild
+              isActive={isActive('/user-guide')}
+              tooltip={t('sidebar.user_guide')}
+            >
+              <Link href="/user-guide">
+                <BookOpenCheck />
+                <span>{t('sidebar.user_guide')}</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>

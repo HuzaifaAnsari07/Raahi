@@ -13,7 +13,8 @@
     "contact_list": "Contact List",
     "contact_roadmap": "Contact Roadmap",
     "feedback": "Feedback",
-    "admin_panel": "Admin Panel"
+    "admin_panel": "Admin Panel",
+    "user_guide": "User Guide"
   },
   "login": {
     "title": "Passenger Login",
@@ -138,9 +139,20 @@
     "seats": "onboard"
   },
   "chatbot": {
-    "title": "NMMT Assistant",
+    "title": "NMMT Raahi Chatbot",
     "greeting": "Hello! I'm the NMMT assistant. How can I help you today?",
     "placeholder": "Ask a question...",
     "error": "I'm having trouble connecting right now. Please try again later."
+  },
+  "user_guide": {
+    "title": "User Guide",
+    "card_title": "How to Use NMMT Raahi",
+    "card_desc": "Find answers to common questions about using the app.",
+    "track_bus_title": "How to Track a Bus?",
+    "track_bus_content": "Go to the dashboard, find your bus, and click the 'Track' button. A live map will show you the bus's current location.",
+    "book_ticket_title": "How to Book a Ticket?",
+    "book_ticket_content": "From the dashboard, click the 'Book Ticket' button on your chosen bus. Select your start and end stops, then confirm your booking to generate an e-ticket.",
+    "use_chatbot_title": "How to Use the Chatbot?",
+    "use_chatbot_content": "Click the chat icon at the bottom-right corner. You can ask questions about bus routes, timings, and other general information."
   }
 }
