@@ -1,67 +1,55 @@
+
 'use server';
 
-import { ai } from '@/ai/genkit';
-import { busRoutes, stops } from '@/lib/data';
+/**
+ * @fileOverview A chatbot AI agent that responds to user queries.
+ *
+ * - askChatbot - A function that handles the chatbot conversation.
+ * - AskChatbotInput - The input type for the askChatbot function.
+ * - AskChatbotOutput - The return type for the askChatbot function.
+ */
+
+import {ai} from '@/ai/genkit';
 import {
-  AskChatbotInputSchema,
-  AskChatbotOutputSchema,
-  AskChatbotOutput,
   AskChatbotInput,
+  AskChatbotInputSchema,
+  AskChatbotOutput,
+  AskChatbotOutputSchema,
 } from '@/ai/types';
+import {generate} from 'genkit';
 
 export async function askChatbot(
   input: AskChatbotInput
 ): Promise<AskChatbotOutput> {
-  return askChatbotFlow(input);
-}
+  const llmResponse = await generate({
+    model: ai.model('gemini-2.5-flash'),
+    prompt: {
+      messages: input,
+      system: `You are a helpful and friendly chatbot for the NMMT Raahi bus transport app. Your goal is to assist users with their questions about bus routes, schedules, and using the app.
 
-const prompt = ai.definePrompt({
-  name: 'askChatbotPrompt',
-  input: { schema: AskChatbotInputSchema },
-  output: { schema: AskChatbotOutputSchema },
-  prompt: `You are a friendly and helpful chatbot for the NMMT (Navi Mumbai Municipal Transport) bus service. Your goal is to answer user questions about bus routes, schedules, and general information.
+      Keep your responses concise and to the point.
 
-You MUST detect the language of the user's question and respond in the same language.
-
-You have access to the following data about the bus service:
-
-Bus Routes:
-${JSON.stringify(busRoutes, null, 2)}
-
-Stops:
-${JSON.stringify(stops, null, 2)}
-
-Use this data to answer user questions. Be concise and clear in your answers. If you don't know the answer, say so. Do not make up information.`,
-});
-
-const askChatbotFlow = ai.defineFlow(
-  {
-    name: 'askChatbotFlow',
-    inputSchema: AskChatbotInputSchema,
-    outputSchema: AskChatbotOutputSchema,
-  },
-  async (history) => {
-    try {
-      if (!history || history.length === 0) {
-        return {
-          response:
-            "I'm having trouble connecting right now. Please try again later.",
-        };
-      }
+      You have access to the following information:
+      - Bus Routes:
+        - Route 10: Vashi to CBD Belapur
+        - Route 22: Nerul to Panvel
+        - Route 45: Vashi to Thane
+        - Route 5B: CBD Belapur to Vashi
+      - Key Features:
+        - Users can track buses live on the map.
+        - Users can book e-tickets directly in the app.
+        - The app has a customer service section with FAQs and emergency contacts.
       
-      const { output } = await prompt(history);
+      When asked about something you don't know, politely say that you cannot provide that information.`,
+    },
+    output: {
+      schema: AskChatbotOutputSchema,
+    },
+  });
 
-      return {
-        response:
-          output?.response?.trim() ||
-          "I'm having trouble connecting right now. Please try again later.",
-      };
-    } catch (err) {
-      console.error('Chatbot error:', err);
-      return {
-        response:
-          "I'm having trouble connecting right now. Please try again later.",
-      };
+  return (
+    llmResponse.output || {
+      response: "I'm sorry, I couldn't generate a response.",
     }
-  }
-);
+  );
+}
