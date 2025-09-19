@@ -8,12 +8,10 @@ import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { MessageSquare, Send, Bot, User, X, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { askChatbot } from '@/ai/flows/ask-chatbot';
-import type { Message as GenkitMessage } from 'genkit';
+import { askChatbot, AskChatbotInput } from '@/ai/flows/ask-chatbot';
 import { useTranslation } from '@/lib/i18n/use-translation';
 
-
-type Message = {
+type DisplayMessage = {
   text: string;
   sender: 'bot' | 'user';
 };
@@ -21,12 +19,16 @@ type Message = {
 export default function ChatbotWidget() {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    { sender: 'bot', text: t('chatbot.greeting') },
-  ]);
+  const [messages, setMessages] = useState<DisplayMessage[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+
+   // Set initial greeting only once when component mounts
+  useEffect(() => {
+    setMessages([{ sender: 'bot', text: t('chatbot.greeting') }]);
+  }, [t]);
+
 
   useEffect(() => {
     if (scrollAreaRef.current) {
@@ -40,26 +42,24 @@ export default function ChatbotWidget() {
   const handleSend = async () => {
     if (input.trim() === '' || isLoading) return;
 
-    const userMessage: Message = { sender: 'user', text: input };
-    setMessages(prev => [...prev, userMessage]);
+    const userMessage: DisplayMessage = { sender: 'user', text: input };
+    const newMessages = [...messages, userMessage];
+    setMessages(newMessages);
     setInput('');
     setIsLoading(true);
 
-    const currentHistory: GenkitMessage[] = messages.map(msg => ({
+    const history: AskChatbotInput = newMessages.map(msg => ({
       role: msg.sender === 'user' ? 'user' : 'model',
       content: [{ text: msg.text }],
     }));
-    
-    // Add the new user message to the history for the API call
-    const updatedHistory = [...currentHistory, { role: 'user' as const, content: [{ text: userMessage.text }] }];
 
     try {
-      const result = await askChatbot({ history: updatedHistory });
-      const botResponse: Message = { sender: 'bot', text: result.response };
+      const result = await askChatbot(history);
+      const botResponse: DisplayMessage = { sender: 'bot', text: result.response };
       setMessages(prev => [...prev, botResponse]);
     } catch (error) {
       console.error("Chatbot error:", error);
-      const errorResponse: Message = { sender: 'bot', text: t('chatbot.error') };
+      const errorResponse: DisplayMessage = { sender: 'bot', text: t('chatbot.error') };
       setMessages(prev => [...prev, errorResponse]);
     } finally {
       setIsLoading(false);

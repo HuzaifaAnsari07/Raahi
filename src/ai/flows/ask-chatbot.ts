@@ -13,17 +13,12 @@ import {z} from 'genkit';
 import {busRoutes, stops} from '@/lib/data';
 import type {Message} from 'genkit';
 
-const AskChatbotInputSchema = z.object({
-  history: z
-    .array(
-      z.object({
-        role: z.enum(['user', 'model']),
-        content: z.array(z.object({text: z.string()})),
-      })
-    )
-    .optional()
-    .describe('The conversation history.'),
-});
+export const AskChatbotInputSchema = z.array(
+  z.object({
+    role: z.enum(['user', 'model']),
+    content: z.array(z.object({text: z.string()})),
+  })
+).describe('The conversation history.');
 export type AskChatbotInput = z.infer<typeof AskChatbotInputSchema>;
 
 const AskChatbotOutputSchema = z.object({
@@ -39,7 +34,7 @@ export async function askChatbot(
 
 const prompt = ai.definePrompt({
   name: 'askChatbotPrompt',
-  input: {schema: AskChatbotInputSchema},
+  input: {schema: z.any()}, // Allow any input for history flexibility
   output: {schema: AskChatbotOutputSchema},
   system: `You are a friendly and helpful chatbot for the NMMT (Navi Mumbai Municipal Transport) bus service. Your goal is to answer user questions about bus routes, schedules, and general information.
 
@@ -55,7 +50,7 @@ ${JSON.stringify(stops, null, 2)}
 
 Use this data to answer user questions. Be concise and clear in your answers. If you don't know the answer, say so. Do not make up information.
 `,
-  history: (input) => input.history as Message[],
+  history: (input) => input as Message[],
 });
 
 const askChatbotFlow = ai.defineFlow(
@@ -64,8 +59,8 @@ const askChatbotFlow = ai.defineFlow(
     inputSchema: AskChatbotInputSchema,
     outputSchema: AskChatbotOutputSchema,
   },
-  async (input) => {
-    const {output} = await prompt(input);
+  async (history) => {
+    const {output} = await prompt(history);
     return {response: output!.response};
   }
 );
