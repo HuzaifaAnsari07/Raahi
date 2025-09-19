@@ -11,20 +11,23 @@
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 import {busRoutes, stops} from '@/lib/data';
+import type {Message} from 'genkit';
 
 const AskChatbotInputSchema = z.object({
-  message: z.string().describe('The user message to the chatbot.'),
   history: z
-    .array(z.object({role: z.enum(['user', 'model']), content: z.array(z.object({text: z.string()}))}))
+    .array(
+      z.object({
+        role: z.enum(['user', 'model']),
+        content: z.array(z.object({text: z.string()})),
+      })
+    )
     .optional()
     .describe('The conversation history.'),
 });
 export type AskChatbotInput = z.infer<typeof AskChatbotInputSchema>;
 
 const AskChatbotOutputSchema = z.object({
-  response: z
-    .string()
-    .describe('The chatbot response to the user message.'),
+  response: z.string().describe('The chatbot response to the user message.'),
 });
 export type AskChatbotOutput = z.infer<typeof AskChatbotOutputSchema>;
 
@@ -52,6 +55,7 @@ ${JSON.stringify(stops, null, 2)}
 
 Use this data to answer user questions. Be concise and clear in your answers. If you don't know the answer, say so. Do not make up information.
 `,
+  history: (input) => input.history as Message[],
 });
 
 const askChatbotFlow = ai.defineFlow(
@@ -60,7 +64,7 @@ const askChatbotFlow = ai.defineFlow(
     inputSchema: AskChatbotInputSchema,
     outputSchema: AskChatbotOutputSchema,
   },
-  async input => {
+  async (input) => {
     const {output} = await prompt(input);
     return {response: output!.response};
   }

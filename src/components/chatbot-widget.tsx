@@ -41,21 +41,17 @@ export default function ChatbotWidget() {
     if (input.trim() === '' || isLoading) return;
 
     const userMessage: Message = { sender: 'user', text: input };
-    const newMessages = [...messages, userMessage];
-    setMessages(newMessages);
+    setMessages(prev => [...prev, userMessage]);
     setInput('');
     setIsLoading(true);
 
-    const history: GenkitMessage[] = newMessages.map(msg => ({
+    const history: GenkitMessage[] = [...messages, userMessage].map(msg => ({
       role: msg.sender === 'user' ? 'user' : 'model',
       content: [{ text: msg.text }],
     }));
 
     try {
-      const result = await askChatbot({
-        message: input,
-        history,
-      });
+      const result = await askChatbot({ history });
       const botResponse: Message = { sender: 'bot', text: result.response };
       setMessages(prev => [...prev, botResponse]);
     } catch (error) {
