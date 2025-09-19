@@ -136,7 +136,7 @@
   },
   "occupancy": {
     "live_occupancy": "लाइव्ह गर्दी",
-    "seats": "ऑनबोर्ड"
+    "onboard": "ऑनबोर्ड"
   },
   "chatbot": {
     "title": "NMMT राही चॅटबॉट",

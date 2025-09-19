@@ -136,7 +136,7 @@
   },
   "occupancy": {
     "live_occupancy": "Live Occupancy",
-    "seats": "onboard"
+    "onboard": "onboard"
   },
   "chatbot": {
     "title": "NMMT Raahi Chatbot",
