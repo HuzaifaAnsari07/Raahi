@@ -65,7 +65,7 @@
     "from_placeholder": "एक बोर्डिंग स्टॉप चुनें",
     "to_label": "तक",
     "to_placeholder": "एक गंतव्य स्टॉप चुनें",
-    "confirm_button": "बुकिंग की पुष्टि करें (डमी भुगतान)",
+    "confirm_button": "बुकिंग की पुष्टि करें",
     "confirming_button": "पुष्टि हो रही है..."
   },
   "booking_confirmation": {

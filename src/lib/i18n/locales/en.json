@@ -65,7 +65,7 @@
     "from_placeholder": "Select a boarding stop",
     "to_label": "To",
     "to_placeholder": "Select a destination stop",
-    "confirm_button": "Confirm Booking (Dummy Pay)",
+    "confirm_button": "Confirm Booking",
     "confirming_button": "Confirming..."
   },
   "booking_confirmation": {
