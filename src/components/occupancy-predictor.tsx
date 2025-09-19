@@ -93,12 +93,6 @@ export default function OccupancyPredictor({ bus, route }: { bus: Bus, route: Ro
         <span className="font-semibold">{predictedOccupancy} / {bus.totalSeats} {t('occupancy.seats')}</span>
       </div>
       <Progress value={occupancyPercentage} indicatorClassName={progressColorClass} />
-      <div className="flex items-center justify-between text-xs text-muted-foreground">
-        <span>{t('occupancy.ai_prediction')}</span>
-        <Badge variant={occupancy.prediction.confidence === 'High' ? 'default' : 'secondary'}>
-          {t('occupancy.confidence', { confidence: occupancy.prediction.confidence })}
-        </Badge>
-      </div>
     </div>
   );
 }
