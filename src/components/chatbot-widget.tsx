@@ -44,20 +44,26 @@ export default function ChatbotWidget() {
     if (input.trim() === '' || isLoading) return;
 
     const userMessage: DisplayMessage = { sender: 'user', text: input };
-    const newMessages = [...messages, userMessage];
-    setMessages(newMessages);
+    const currentMessages = [...messages, userMessage];
+    setMessages(currentMessages);
     setInput('');
     setIsLoading(true);
 
-    const history: AskChatbotInput = newMessages.map(msg => ({
+    const history: AskChatbotInput = currentMessages.map(msg => ({
       role: msg.sender === 'user' ? 'user' : 'model',
       content: [{ text: msg.text }],
     }));
 
     try {
       const result = await askChatbot(history);
-      const botResponse: DisplayMessage = { sender: 'bot', text: result.response };
+      console.log('Raw API Response:', result);
+
+      // Safely access the response property with optional chaining and provide a default fallback
+      const botResponseText = result?.response ?? t('chatbot.error');
+      
+      const botResponse: DisplayMessage = { sender: 'bot', text: botResponseText };
       setMessages(prev => [...prev, botResponse]);
+
     } catch (error) {
       console.error("Chatbot error:", error);
       const errorResponse: DisplayMessage = { sender: 'bot', text: t('chatbot.error') };

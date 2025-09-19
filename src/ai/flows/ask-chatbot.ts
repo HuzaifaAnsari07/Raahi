@@ -58,6 +58,6 @@ const askChatbotFlow = ai.defineFlow(
   },
   async (history) => {
     const {output} = await prompt(history);
-    return {response: output!.response};
+    return {response: output?.response ?? "I'm having trouble connecting right now. Please try again later."};
   }
 );
