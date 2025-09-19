@@ -9,7 +9,13 @@ import ur from './locales/ur.json';
 
 const translations: Record<string, any> = { en, hi, mr, ur };
 
-export const LanguageContext = createContext({
+type TranslationContextType = {
+  language: string;
+  setLanguage: (lang: string) => void;
+  t: (key: string, values?: Record<string, string | number>) => string;
+};
+
+export const LanguageContext = createContext<TranslationContextType>({
   language: 'en',
   setLanguage: (lang: string) => {},
   t: (key: string) => key,
@@ -30,21 +36,33 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem('nmmt-lang', lang);
   };
   
-  const t = (key: string): string => {
+  const t = (key: string, values?: Record<string, string | number>): string => {
     const keys = key.split('.');
     let result = translations[language];
     for (const k of keys) {
         result = result?.[k];
-        if (!result) {
+        if (result === undefined) {
             // Fallback to English if translation is missing
             let fallbackResult = translations['en'];
             for (const fk of keys) {
                 fallbackResult = fallbackResult?.[fk];
+                if(fallbackResult === undefined) break;
             }
-            return fallbackResult || key;
+            result = fallbackResult;
+            break;
         }
     }
-    return result || key;
+    
+    let resultString = result || key;
+
+    if (values && typeof resultString === 'string') {
+        Object.keys(values).forEach(valueKey => {
+            const regex = new RegExp(`{${valueKey}}`, 'g');
+            resultString = resultString.replace(regex, String(values[valueKey]));
+        });
+    }
+
+    return resultString;
   };
 
   return (
