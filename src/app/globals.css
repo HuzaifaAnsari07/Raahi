@@ -83,3 +83,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .timeline-item:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 0.5rem;
+    top: 1.5rem;
+    bottom: -0.5rem;
+    width: 2px;
+    background-color: hsl(var(--border));
+    transform: translateX(-50%);
+  }
+}

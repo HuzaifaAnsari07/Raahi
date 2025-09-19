@@ -2,14 +2,14 @@
 import type { Stop, Route, Bus, Booking, Contact, Alert, FAQ } from './types';
 
 export const stops: Stop[] = [
-  { id: 'stop-1', name: 'Vashi Bus Stn', time: '08:00' },
-  { id: 'stop-2', name: 'Turbhe Naka', time: '08:10' },
-  { id: 'stop-3', name: 'Juinagar Stn', time: '08:20' },
-  { id: 'stop-4', name: 'Nerul LP', time: '08:30' },
-  { id: 'stop-5', name: 'CBD Belapur', time: '08:45' },
-  { id: 'stop-6', name: 'Panvel', time: '09:15' },
-  { id: 'stop-7', name: 'Thane Stn', time: '09:00' },
-  { id: 'stop-8', name: 'Airoli', time: '08:40' },
+  { id: 'stop-1', name: 'Vashi Bus Stn', time: '08:00', lat: 19.0728, lng: 72.9978 },
+  { id: 'stop-2', name: 'Turbhe Naka', time: '08:10', lat: 19.0526, lng: 73.0093 },
+  { id: 'stop-3', name: 'Juinagar Stn', time: '08:20', lat: 19.0493, lng: 73.0135 },
+  { id: 'stop-4', name: 'Nerul LP', time: '08:30', lat: 19.0354, lng: 73.0194 },
+  { id: 'stop-5', name: 'CBD Belapur', time: '08:45', lat: 19.018, lng: 73.036 },
+  { id: 'stop-6', name: 'Panvel', time: '09:15', lat: 18.9912, lng: 73.1171 },
+  { id: 'stop-7', name: 'Thane Stn', time: '09:00', lat: 19.1866, lng: 72.9763 },
+  { id: 'stop-8', name: 'Airoli', time: '08:40', lat: 19.1581, lng: 72.9993 },
 ];
 
 export const busRoutes: Route[] = [

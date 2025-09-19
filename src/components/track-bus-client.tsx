@@ -9,12 +9,14 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Clock, Bus as BusIcon, Wifi } from 'lucide-react';
+import { Clock, Bus as BusIcon, Wifi, Circle, CircleDot, CheckCircle2 } from 'lucide-react';
 import OccupancyPredictor from '@/components/occupancy-predictor';
 import Image from 'next/image';
 import type { Bus, Route } from '@/lib/types';
 import type { ImagePlaceholder } from '@/lib/placeholder-images';
 import { useTranslation } from '@/lib/i18n/use-translation';
+import { cn } from '@/lib/utils';
+import { ScrollArea } from './ui/scroll-area';
 
 type TrackBusClientProps = {
   bus: Bus;
@@ -24,15 +26,18 @@ type TrackBusClientProps = {
 
 export default function TrackBusClient({ bus, route, busImage }: TrackBusClientProps) {
   const { t } = useTranslation();
+  const [currentStopIndex, setCurrentStopIndex] = useState(0);
+
   // Simulate real-time bus data updates
   useEffect(() => {
     const interval = setInterval(() => {
       // In a real app, you would fetch new bus data here.
-      // For this mock, we don't need to do anything.
-    }, 3000); // Update every 3 seconds
+      // For this mock, we simulate the bus moving to the next stop.
+      setCurrentStopIndex(prevIndex => (prevIndex + 1) % route.stops.length);
+    }, 5000); // Update every 5 seconds
 
     return () => clearInterval(interval);
-  }, []);
+  }, [route.stops.length]);
 
   return (
     <div className="grid h-full grid-cols-1 gap-6 lg:grid-cols-3">
@@ -41,7 +46,7 @@ export default function TrackBusClient({ bus, route, busImage }: TrackBusClientP
           width="100%"
           height="100%"
           style={{ border: 0 }}
-          src="https://www.openstreetmap.org/export/embed.html?bbox=72.995,19.03,73.045,19.06&amp;layer=mapnik"
+          src={`https://www.openstreetmap.org/export/embed.html?bbox=${route.stops[0].lng-0.05},${route.stops[0].lat-0.03},${route.stops[route.stops.length-1].lng+0.05},${route.stops[route.stops.length-1].lat+0.03}&layer=mapnik`}
           className="rounded-lg"
         ></iframe>
          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -90,6 +95,38 @@ export default function TrackBusClient({ bus, route, busImage }: TrackBusClientP
                 </div>
             </div>
           </CardContent>
+        </Card>
+        <Card>
+            <CardHeader>
+                <CardTitle>Route Timeline</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <ScrollArea className="h-64 pr-4">
+                    <div className="relative">
+                        {route.stops.map((stop, index) => {
+                            const isCompleted = index < currentStopIndex;
+                            const isCurrent = index === currentStopIndex;
+                            const isUpcoming = index > currentStopIndex;
+
+                            return (
+                                <div key={stop.id} className="relative flex items-start gap-4 pb-8 timeline-item">
+                                    <div className="flex flex-col items-center">
+                                      {isCompleted && <CheckCircle2 className="h-5 w-5 text-green-500" />}
+                                      {isCurrent && <CircleDot className="h-5 w-5 text-primary" />}
+                                      {isUpcoming && <Circle className="h-5 w-s5 text-muted-foreground" />}
+                                    </div>
+                                    <div className="flex-1">
+                                        <p className={cn("font-medium", isCurrent && "text-primary")}>
+                                            {stop.name}
+                                        </p>
+                                        <p className="text-sm text-muted-foreground">{t('track_bus.eta')}: {stop.time}</p>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </ScrollArea>
+            </CardContent>
         </Card>
       </div>
     </div>

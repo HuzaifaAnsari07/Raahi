@@ -52,7 +52,8 @@
     "on_time": "On Time",
     "free_wifi": "Free WiFi",
     "ac": "AC",
-    "static_map_notice": "This is a static map placeholder. Live map requires an API key."
+    "static_map_notice": "This is a static map placeholder. Live map requires an API key.",
+    "eta": "ETA"
   },
   "book_ticket": {
     "title": "Book Your Ticket",

@@ -3,6 +3,8 @@ export type Stop = {
   id: string;
   name: string;
   time: string; // "HH:MM"
+  lat: number;
+  lng: number;
 };
 
 export type Route = {
