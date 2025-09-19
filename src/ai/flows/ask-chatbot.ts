@@ -4,27 +4,17 @@
 /**
  * @fileOverview A chatbot that can answer questions about the NMMT bus service.
  * - askChatbot - A function that handles the chatbot conversation.
- * - AskChatbotInput - The input type for the askChatbot function.
- * - AskChatbotOutput - The return type for the askChatbot function.
  */
 
 import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
 import {busRoutes, stops} from '@/lib/data';
 import type {Message} from 'genkit';
-
-export const AskChatbotInputSchema = z.array(
-  z.object({
-    role: z.enum(['user', 'model']),
-    content: z.array(z.object({text: z.string()})),
-  })
-).describe('The conversation history.');
-export type AskChatbotInput = z.infer<typeof AskChatbotInputSchema>;
-
-const AskChatbotOutputSchema = z.object({
-  response: z.string().describe('The chatbot response to the user message.'),
-});
-export type AskChatbotOutput = z.infer<typeof AskChatbotOutputSchema>;
+import {
+  AskChatbotInput,
+  AskChatbotInputSchema,
+  AskChatbotOutput,
+  AskChatbotOutputSchema,
+} from '@/ai/types';
 
 export async function askChatbot(
   input: AskChatbotInput
@@ -34,7 +24,7 @@ export async function askChatbot(
 
 const prompt = ai.definePrompt({
   name: 'askChatbotPrompt',
-  input: {schema: z.any()}, // Allow any input for history flexibility
+  input: {schema: AskChatbotInputSchema},
   output: {schema: AskChatbotOutputSchema},
   system: `You are a friendly and helpful chatbot for the NMMT (Navi Mumbai Municipal Transport) bus service. Your goal is to answer user questions about bus routes, schedules, and general information.
 

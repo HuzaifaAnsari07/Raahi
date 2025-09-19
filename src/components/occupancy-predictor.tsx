@@ -1,7 +1,8 @@
 
 'use client';
 
-import { predictBusOccupancy, PredictBusOccupancyInput } from '@/ai/flows/predict-bus-occupancy';
+import { predictBusOccupancy } from '@/ai/flows/predict-bus-occupancy';
+import type { PredictBusOccupancyInput } from '@/ai/types';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Skeleton } from '@/components/ui/skeleton';

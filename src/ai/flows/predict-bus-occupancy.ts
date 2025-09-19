@@ -5,46 +5,15 @@
  * @fileOverview Predicts bus occupancy based on historical data and real-time information.
  *
  * - predictBusOccupancy - A function that predicts the bus occupancy.
- * - PredictBusOccupancyInput - The input type for the predictBusOccupancy function.
- * - PredictBusOccupancyOutput - The return type for the predictBusOccupancy function.
  */
 
 import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
-
-const PredictBusOccupancyInputSchema = z.object({
-  routeId: z.string().describe('The ID of the bus route.'),
-  time: z.string().describe('The current time in HH:mm format.'),
-  dayOfWeek: z.string().describe('The current day of the week.'),
-  historicalOccupancyData: z
-    .string()
-    .describe(
-      'Historical occupancy data for the route, time, and day of the week.'
-    ),
-  currentBookings: z.number().describe('The number of current bookings.'),
-});
-export type PredictBusOccupancyInput = z.infer<
-  typeof PredictBusOccupancyInputSchema
->;
-
-const PredictBusOccupancyOutputSchema = z.object({
-  predictedOccupancy: z
-    .number()
-    .describe('The predicted occupancy of the bus (number of seats filled).'),
-  confidence: z
-    .string()
-    .describe(
-      'A confidence level for the prediction (e.g., High, Medium, Low)'
-    ),
-  reason: z
-    .string()
-    .describe(
-      'A brief explanation of why the occupancy is predicted to be at this level.'
-    ),
-});
-export type PredictBusOccupancyOutput = z.infer<
-  typeof PredictBusOccupancyOutputSchema
->;
+import {
+  PredictBusOccupancyInput,
+  PredictBusOccupancyInputSchema,
+  PredictBusOccupancyOutput,
+  PredictBusOccupancyOutputSchema,
+} from '@/ai/types';
 
 export async function predictBusOccupancy(
   input: PredictBusOccupancyInput

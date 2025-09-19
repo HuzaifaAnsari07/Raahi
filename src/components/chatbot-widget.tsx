@@ -8,7 +8,8 @@ import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { MessageSquare, Send, Bot, User, X, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { askChatbot, AskChatbotInput } from '@/ai/flows/ask-chatbot';
+import { askChatbot } from '@/ai/flows/ask-chatbot';
+import type { AskChatbotInput } from '@/ai/types';
 import { useTranslation } from '@/lib/i18n/use-translation';
 
 type DisplayMessage = {
