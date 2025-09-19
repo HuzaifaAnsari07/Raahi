@@ -51,20 +51,12 @@ export default function ChatbotWidget() {
     setInput('');
     setIsLoading(true);
 
-    // Filter out the initial greeting from the history sent to the AI
-    const history: AskChatbotInput = currentMessages
-      .filter(msg => msg.text !== t('chatbot.greeting'))
-      .map(msg => ({
+    const history: AskChatbotInput = currentMessages.map(msg => ({
         role: msg.sender === 'user' ? 'user' : 'model',
         content: [{ text: msg.text }],
     }));
 
     try {
-      // Ensure history is not empty before calling the API
-      if (history.length === 0) {
-        throw new Error("Cannot send an empty message to the chatbot.");
-      }
-
       console.log('Sending to API:', JSON.stringify(history, null, 2));
       const result = await askChatbot(history);
       console.log('Raw API Response:', result);
