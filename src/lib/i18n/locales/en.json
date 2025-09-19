@@ -102,7 +102,9 @@
     "contact_info_title": "Contact Information",
     "contact_info_desc": "Reach out to our team for any assistance.",
     "faq_title": "Frequently Asked Questions",
-    "faq_desc": "Find answers to common questions."
+    "faq_desc": "Find answers to common questions.",
+    "emergency_title": "Emergency Contact",
+    "emergency_desc": "For urgent help, call our 24/7 helpline."
   },
   "contact_list": {
     "title": "Contact List",

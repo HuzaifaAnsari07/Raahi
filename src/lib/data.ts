@@ -61,8 +61,10 @@ export const bookings: Booking[] = [
 export const contacts: Contact[] = [
   { id: '1', name: 'Mr. Yogesh Kaduskar', designation: 'Transport Manager', email: 'transport_manager[@]nmmc[.]gov[.]in', mobile: '9960536654' },
   { id: '2', name: 'Mr. Tushar Daundkar', designation: 'Chief Accounts and Finance Officer', email: 'nmmt[.]lekha[@]gmail[.]com', mobile: '9594058080' },
-  { id: '3', name: 'Mr. Mr. Vivek Achalkar', designation: 'Executive Engineer', email: 'nmmt[.]engg[@]gmail[.]com', mobile: '9029001810' },
-  { id: '4', name: 'Mr. Sunil Salunkhe', designation: 'Chief Transport Officer', email: 'nmmtcto[@]gmail[.]com', mobile: '9930735576' }
+  { id: '3', name: 'Mr. Vivek Achalkar', designation: 'Executive Engineer', email: 'nmmt[.]engg[@]gmail[.]com', mobile: '9029001810' },
+  { id: '4', name: 'Mr. Sunil Salunkhe', designation: 'Chief Transport Officer', email: 'nmmtcto[@]gmail[.]com', mobile: '9930735576' },
+  { id: '5', name: 'Mr. Ravi Sharma', designation: 'Depot Manager', email: 'depot.manager@example.com', mobile: '9876543210' },
+  { id: '6', name: 'Ms. Priya Singh', designation: 'Customer Support Head', email: 'support.head@example.com', mobile: '9876543211' }
 ];
 
 export const alerts: Alert[] = [

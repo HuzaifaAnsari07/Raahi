@@ -15,14 +15,34 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { contacts, faqs } from '@/lib/data';
-import { Mail, Phone } from 'lucide-react';
+import { Mail, Phone, AlertTriangle } from 'lucide-react';
 import { useTranslation } from '@/lib/i18n/use-translation';
+import { Button } from '@/components/ui/button';
 
 export default function CustomerServicePage() {
   const { t } = useTranslation();
   return (
     <div className="flex flex-col gap-8">
       <h1 className="text-3xl font-bold tracking-tight">{t('customer_service.title')}</h1>
+
+      <Card className="border-destructive bg-destructive/10">
+        <CardHeader className="flex flex-row items-center gap-4">
+            <AlertTriangle className="h-8 w-8 text-destructive" />
+            <div>
+                <CardTitle>{t('customer_service.emergency_title')}</CardTitle>
+                <CardDescription className="text-destructive">
+                {t('customer_service.emergency_desc')}
+                </CardDescription>
+            </div>
+        </CardHeader>
+        <CardContent>
+            <Button variant="destructive" asChild className="text-lg">
+                <a href="tel:1800220047">
+                    <Phone className="mr-2 h-5 w-5" /> 1800-22-0047
+                </a>
+            </Button>
+        </CardContent>
+      </Card>
 
       <div className="grid gap-8 lg:grid-cols-2">
         {/* Contact List */}

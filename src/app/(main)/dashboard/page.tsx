@@ -12,13 +12,32 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { buses, busRoutes } from '@/lib/data';
-import { ArrowRight, Bus, Clock } from 'lucide-react';
+import { ArrowRight, Bus, Clock, Star } from 'lucide-react';
 import Link from 'next/link';
 import OccupancyPredictor from '@/components/occupancy-predictor';
 import { useTranslation } from '@/lib/i18n/use-translation';
+import { useState } from 'react';
+import { cn } from '@/lib/utils';
+import { useToast } from '@/hooks/use-toast';
 
 export default function DashboardPage() {
   const { t } = useTranslation();
+  const { toast } = useToast();
+  const [favorites, setFavorites] = useState<string[]>([]);
+
+  const toggleFavorite = (routeId: string) => {
+    setFavorites(prev => {
+      const isFavorite = prev.includes(routeId);
+      if (isFavorite) {
+        toast({ title: "Route removed from favorites." });
+        return prev.filter(id => id !== routeId);
+      } else {
+        toast({ title: "Route added to favorites!" });
+        return [...prev, routeId];
+      }
+    });
+  };
+
 
   return (
     <div className="flex flex-col gap-8">
@@ -36,16 +55,22 @@ export default function DashboardPage() {
 
           const from = route.stops[0].name;
           const to = route.stops[route.stops.length - 1].name;
+          const isFavorite = favorites.includes(route.id);
 
           return (
             <Card key={bus.id} className="flex flex-col">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
                   <span>{route.name}</span>
-                  <div className="flex items-center gap-2 text-sm font-medium text-primary">
-                    <Bus className="h-4 w-4" />
-                    <span>{bus.busNumber}</span>
-                  </div>
+                   <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-8 w-8"
+                      onClick={() => toggleFavorite(route.id)}
+                      aria-label="Toggle Favorite"
+                    >
+                      <Star className={cn("h-5 w-5 text-muted-foreground", isFavorite && "fill-yellow-400 text-yellow-500")} />
+                    </Button>
                 </CardTitle>
                 <CardDescription className="flex items-center gap-2 pt-2">
                   <span>{from}</span>
@@ -58,6 +83,10 @@ export default function DashboardPage() {
                   <Clock className="mr-2 h-4 w-4" />
                   <span>{t('dashboard.departs_at')} {bus.startTime}</span>
                 </div>
+                 <div className="flex items-center gap-2 text-sm font-medium text-primary">
+                    <Bus className="h-4 w-4" />
+                    <span>{bus.busNumber}</span>
+                  </div>
                 <OccupancyPredictor bus={bus} route={route} />
               </CardContent>
               <CardFooter className="grid grid-cols-2 gap-2">
