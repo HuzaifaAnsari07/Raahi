@@ -14,12 +14,12 @@ import { useTranslation } from '@/lib/i18n/use-translation';
 import { ArrowRight, Bus, Clock } from 'lucide-react';
 
 export default function BookTicketPage({
-  params,
+  params: { busId },
 }: {
   params: { busId: string };
 }) {
   const { t } = useTranslation();
-  const bus = buses.find((b) => b.id === params.busId);
+  const bus = buses.find((b) => b.id === busId);
   const route = busRoutes.find((r) => r.id === bus?.routeId);
 
   if (!bus || !route) {
