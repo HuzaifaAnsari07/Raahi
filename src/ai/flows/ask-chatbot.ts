@@ -26,7 +26,11 @@ const prompt = ai.definePrompt({
   name: 'askChatbotPrompt',
   input: {schema: AskChatbotInputSchema},
   output: {schema: AskChatbotOutputSchema},
-  system: `You are a friendly and helpful chatbot for the NMMT (Navi Mumbai Municipal Transport) bus service. Your goal is to answer user questions about bus routes, schedules, and general information.
+  history: (input) => [
+    {
+      role: 'model',
+      content: [{
+        text: `You are a friendly and helpful chatbot for the NMMT (Navi Mumbai Municipal Transport) bus service. Your goal is to answer user questions about bus routes, schedules, and general information.
 
 You MUST detect the language of the user's question and respond in the same language.
 
@@ -40,7 +44,10 @@ ${JSON.stringify(stops, null, 2)}
 
 Use this data to answer user questions. Be concise and clear in your answers. If you don't know the answer, say so. Do not make up information.
 `,
-  history: (input) => input as Message[],
+      }],
+    },
+    ...input,
+  ],
 });
 
 const askChatbotFlow = ai.defineFlow(
