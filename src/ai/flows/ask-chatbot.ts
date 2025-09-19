@@ -1,18 +1,12 @@
-
 'use server';
 
-/**
- * @fileOverview A chatbot that can answer questions about the NMMT bus service.
- * - askChatbot - A function that handles the chatbot conversation.
- */
-
-import {ai} from '@/ai/genkit';
-import {busRoutes, stops} from '@/lib/data';
+import { ai } from '@/ai/genkit';
+import { busRoutes, stops } from '@/lib/data';
 import {
-  AskChatbotInput,
   AskChatbotInputSchema,
-  AskChatbotOutput,
   AskChatbotOutputSchema,
+  AskChatbotOutput,
+  AskChatbotInput,
 } from '@/ai/types';
 
 export async function askChatbot(
@@ -23,13 +17,9 @@ export async function askChatbot(
 
 const prompt = ai.definePrompt({
   name: 'askChatbotPrompt',
-  input: {schema: AskChatbotInputSchema},
-  output: {schema: AskChatbotOutputSchema},
-  history: (input) => [
-    {
-      role: 'model',
-      content: [{
-        text: `You are a friendly and helpful chatbot for the NMMT (Navi Mumbai Municipal Transport) bus service. Your goal is to answer user questions about bus routes, schedules, and general information.
+  input: { schema: AskChatbotInputSchema },
+  output: { schema: AskChatbotOutputSchema },
+  prompt: `You are a friendly and helpful chatbot for the NMMT (Navi Mumbai Municipal Transport) bus service. Your goal is to answer user questions about bus routes, schedules, and general information.
 
 You MUST detect the language of the user's question and respond in the same language.
 
@@ -41,12 +31,7 @@ ${JSON.stringify(busRoutes, null, 2)}
 Stops:
 ${JSON.stringify(stops, null, 2)}
 
-Use this data to answer user questions. Be concise and clear in your answers. If you don't know the answer, say so. Do not make up information.
-`,
-      }],
-    },
-    ...input,
-  ],
+Use this data to answer user questions. Be concise and clear in your answers. If you don't know the answer, say so. Do not make up information.`,
 });
 
 const askChatbotFlow = ai.defineFlow(
@@ -56,10 +41,27 @@ const askChatbotFlow = ai.defineFlow(
     outputSchema: AskChatbotOutputSchema,
   },
   async (history) => {
-    if (history.length === 0) {
-        return {response: "I'm having trouble connecting right now. Please try again later."};
+    try {
+      if (!history || history.length === 0) {
+        return {
+          response:
+            "I'm having trouble connecting right now. Please try again later.",
+        };
+      }
+      
+      const { output } = await prompt(history);
+
+      return {
+        response:
+          output?.response?.trim() ||
+          "I'm having trouble connecting right now. Please try again later.",
+      };
+    } catch (err) {
+      console.error('Chatbot error:', err);
+      return {
+        response:
+          "I'm having trouble connecting right now. Please try again later.",
+      };
     }
-    const {output} = await prompt(history);
-    return {response: output?.response ?? "I'm having trouble connecting right now. Please try again later."};
   }
 );
