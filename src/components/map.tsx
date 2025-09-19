@@ -28,8 +28,8 @@ export default function Map({ busPosition }: { busPosition: { lat: number, lng: 
       <div className="flex h-full w-full items-center justify-center bg-muted p-4 text-center">
         <div className="text-destructive-foreground bg-destructive p-4 rounded-md">
           <p className="font-bold">Google Maps API Key is missing.</p>
-          <p>Please add it to your .env.local file to enable map functionality.</p>
-          <code className="mt-2 block bg-black/20 p-1 rounded text-sm">NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=YOUR_API_KEY_HERE</code>
+          <p className="text-sm">Please add it to your .env.local file to enable map functionality.</p>
+          <code className="mt-2 block bg-black/20 p-1 rounded text-xs">NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=YOUR_API_KEY_HERE</code>
         </div>
       </div>
     );

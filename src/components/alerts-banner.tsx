@@ -20,9 +20,9 @@ const alertVariants = cva(
   {
     variants: {
       variant: {
-        info: "border-blue-500 bg-blue-500/10 text-blue-800 dark:text-blue-200",
-        warning: "border-yellow-500 bg-yellow-500/10 text-yellow-800 dark:text-yellow-200",
-        danger: "border-red-500 bg-red-500/10 text-red-800 dark:text-red-200",
+        info: "border-blue-500 bg-blue-500/10 text-blue-900 dark:text-blue-200",
+        warning: "border-yellow-500 bg-yellow-500/10 text-yellow-900 dark:text-yellow-200",
+        danger: "border-red-500 bg-red-500/10 text-red-900 dark:text-red-200",
       },
     },
     defaultVariants: {

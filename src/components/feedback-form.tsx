@@ -61,7 +61,7 @@ export default function FeedbackForm() {
 
   if (submissionStatus?.success) {
     return (
-       <Alert variant="default" className="border-green-500 bg-green-500/10 text-green-800 dark:text-green-200">
+       <Alert variant="default" className="border-green-500 bg-green-500/10 text-green-900 dark:text-green-200">
         <CheckCircle className="h-4 w-4 !text-green-500" />
         <AlertTitle>{t('feedback.success_title')}</AlertTitle>
         <AlertDescription>{t('feedback.success_message')}</AlertDescription>
