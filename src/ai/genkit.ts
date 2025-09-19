@@ -11,6 +11,5 @@ export const ai = genkit({
       // You can setup a .env.local file with GOOGLE_API_KEY=...
     }),
   ],
-  model: 'googleai/gemini-2.5-flash',
   enableTracing: true,
 });

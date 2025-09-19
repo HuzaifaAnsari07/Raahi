@@ -22,7 +22,7 @@ export async function askChatbot(
   input: AskChatbotInput
 ): Promise<AskChatbotOutput> {
   const llmResponse = await generate({
-    model: ai.model('gemini-2.5-flash'),
+    model: 'googleai/gemini-2.5-flash',
     prompt: {
       messages: input,
       system: `You are a helpful and friendly chatbot for the NMMT Raahi bus transport app. Your goal is to assist users with their questions about bus routes, schedules, and using the app.
