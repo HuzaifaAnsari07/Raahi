@@ -1,3 +1,4 @@
+
 import type { Stop, Route, Bus, Booking, Contact, Alert, FAQ } from './types';
 
 export const stops: Stop[] = [
@@ -35,12 +36,12 @@ export const busRoutes: Route[] = [
 ];
 
 export const buses: Bus[] = [
-  { id: 'bus-1', busNumber: 'MH-43-1234', routeId: 'route-1', startTime: '08:00', totalSeats: 85 },
-  { id: 'bus-2', busNumber: 'MH-43-5678', routeId: 'route-2', startTime: '08:30', totalSeats: 85 },
-  { id: 'bus-3', busNumber: 'MH-43-9012', routeId: 'route-3', startTime: '08:00', totalSeats: 85 },
-  { id: 'bus-4', busNumber: 'MH-43-3456', routeId: 'route-4', startTime: '09:00', totalSeats: 85 },
-  { id: 'bus-5', busNumber: 'MH-43-7890', routeId: 'route-1', startTime: '09:30', totalSeats: 85 },
-  { id: 'bus-6', busNumber: 'MH-43-2109', routeId: 'route-2', startTime: '10:00', totalSeats: 85 },
+  { id: 'bus-1', busNumber: 'MH-43-1234', routeId: 'route-1', startTime: '08:00', capacity: 85, currentCount: 72 }, // Standard Bus
+  { id: 'bus-2', busNumber: 'MH-43-5678', routeId: 'route-2', startTime: '08:30', capacity: 50, currentCount: 37 }, // Mini Bus
+  { id: 'bus-3', busNumber: 'MH-43-9012', routeId: 'route-3', startTime: '08:00', capacity: 85, currentCount: 45 },
+  { id: 'bus-4', busNumber: 'MH-43-3456', routeId: 'route-4', startTime: '09:00', capacity: 85, currentCount: 60 },
+  { id: 'bus-5', busNumber: 'MH-43-7890', routeId: 'route-1', startTime: '09:30', capacity: 85, currentCount: 23 },
+  { id: 'bus-6', busNumber: 'MH-43-2109', routeId: 'route-2', startTime: '10:00', capacity: 50, currentCount: 41 },
 ];
 
 export const bookings: Booking[] = [

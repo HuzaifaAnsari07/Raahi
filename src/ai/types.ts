@@ -1,3 +1,4 @@
+
 /**
  * @fileOverview Defines the types and schemas for AI flows.
  */
@@ -31,6 +32,7 @@ export const PredictBusOccupancyInputSchema = z.object({
       'Historical occupancy data for the route, time, and day of the week.'
     ),
   currentBookings: z.number().describe('The number of current bookings.'),
+  capacity: z.number().describe('The total capacity of the bus.'),
 });
 export type PredictBusOccupancyInput = z.infer<
   typeof PredictBusOccupancyInputSchema

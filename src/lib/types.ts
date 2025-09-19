@@ -1,3 +1,4 @@
+
 export type Stop = {
   id: string;
   name: string;
@@ -15,7 +16,8 @@ export type Bus = {
   busNumber: string;
   routeId: string;
   startTime: string; // "HH:MM"
-  totalSeats: number;
+  capacity: number;
+  currentCount: number;
 };
 
 export type Booking = {
