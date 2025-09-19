@@ -17,6 +17,7 @@ import { LogOut, User, LayoutDashboard } from 'lucide-react';
 import Image from 'next/image';
 import LanguageSwitcher from './language-switcher';
 import { useTranslation } from '@/lib/i18n/use-translation';
+import { ThemeSwitcher } from './theme-switcher';
 
 export default function AppHeader() {
   const { t } = useTranslation();
@@ -36,8 +37,9 @@ export default function AppHeader() {
         </Link>
       </div>
 
-      <div className="flex w-full items-center justify-end gap-4">
+      <div className="flex w-full items-center justify-end gap-2">
         <LanguageSwitcher />
+        <ThemeSwitcher />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button

@@ -2,6 +2,7 @@ import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 import { LanguageProvider } from '@/lib/i18n/provider';
+import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
   title: 'NMMT Tracker',
@@ -23,10 +24,17 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased">
-        <LanguageProvider>
-          {children}
-        </LanguageProvider>
-        <Toaster />
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+        >
+          <LanguageProvider>
+            {children}
+          </LanguageProvider>
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );
