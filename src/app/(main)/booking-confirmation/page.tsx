@@ -1,3 +1,18 @@
+"use client";
+
+import { useSearchParams } from "next/navigation";
+
+export default function BookingConfirmation() {
+  const searchParams = useSearchParams();
+  const bookingId = searchParams.get("id");
+
+  return (
+    <div>
+      <h1>Booking Confirmation</h1>
+      <p>Your booking ID: {bookingId}</p>
+    </div>
+  );
+}
 
 'use client';
 
