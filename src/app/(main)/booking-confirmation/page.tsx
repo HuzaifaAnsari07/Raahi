@@ -1,4 +1,5 @@
-'use client';
+"use client";
+import { useSearchParams } from "next/navigation";
 
 // app/(main)/booking-confirmation/page.js
 import { Suspense } from "react";
