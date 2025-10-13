@@ -1,3 +1,5 @@
+'use client';
+
 // app/(main)/booking-confirmation/page.js
 import { Suspense } from "react";
 import BookingClient from "./BookingClient";
@@ -10,7 +12,7 @@ export default function BookingPage() {
   );
 }
 
-'use client';
+
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
