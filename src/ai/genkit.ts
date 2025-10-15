@@ -3,7 +3,7 @@ import {genkit, configureGenkit} from 'genkit';
 import {googleAI} from '@genkit-ai/googleai';
 import {config} from 'dotenv';
 
-config({path: `.env.local`});
+config({path: `src/lib/i18n/locales/.env.local`});
 
 if (!process.env.GEMINI_API_KEY) {
   console.warn(
