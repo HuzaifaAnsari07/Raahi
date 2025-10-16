@@ -80,7 +80,7 @@ export default function TrackBusClient({ bus, route, busImage }: TrackBusClientP
                 </div>
             )}
             <OccupancyPredictor bus={bus} route={route} />
-            <div className="flex items-center justify-between text-sm text-muted-foreground">
+            <div className="flex flex-wrap items-center justify-between text-sm text-muted-foreground gap-2">
                 <div className="flex items-center gap-2">
                     <Clock className="h-4 w-4 text-primary"/>
                     <span>{t('track_bus.on_time')}</span>

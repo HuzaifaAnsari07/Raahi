@@ -102,7 +102,7 @@ export default function AdminDashboardPage() {
           <TabsTrigger value="timetable">{t('admin.timetable_tab')}</TabsTrigger>
         </TabsList>
         <TabsContent value="analytics" className="mt-6">
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
@@ -175,7 +175,7 @@ export default function AdminDashboardPage() {
         </TabsContent>
         <TabsContent value="timetable" className="mt-6">
           <Card>
-            <CardHeader className="flex flex-row items-center justify-between">
+            <CardHeader className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <CardTitle>{t('admin.bus_routes_title')}</CardTitle>
                 <CardDescription>{t('admin.bus_routes_desc')}</CardDescription>
@@ -190,28 +190,30 @@ export default function AdminDashboardPage() {
                 />
             </CardHeader>
             <CardContent>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>{t('admin.route_id_header')}</TableHead>
-                    <TableHead>{t('admin.route_name_header')}</TableHead>
-                    <TableHead>{t('admin.stops_count_header')}</TableHead>
-                    <TableHead>{t('admin.actions_header')}</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {busRoutes.map((route) => (
-                    <TableRow key={route.id}>
-                      <TableCell className="font-medium">{route.id}</TableCell>
-                      <TableCell>{route.name}</TableCell>
-                      <TableCell>{route.stops.length}</TableCell>
-                      <TableCell>
-                        <Button variant="outline" size="sm" onClick={() => handleEditClick(route.id)}>{t('admin.edit_button')}</Button>
-                      </TableCell>
+              <div className="overflow-x-auto">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>{t('admin.route_id_header')}</TableHead>
+                      <TableHead>{t('admin.route_name_header')}</TableHead>
+                      <TableHead>{t('admin.stops_count_header')}</TableHead>
+                      <TableHead>{t('admin.actions_header')}</TableHead>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+                  </TableHeader>
+                  <TableBody>
+                    {busRoutes.map((route) => (
+                      <TableRow key={route.id}>
+                        <TableCell className="font-medium">{route.id}</TableCell>
+                        <TableCell>{route.name}</TableCell>
+                        <TableCell>{route.stops.length}</TableCell>
+                        <TableCell>
+                          <Button variant="outline" size="sm" onClick={() => handleEditClick(route.id)}>{t('admin.edit_button')}</Button>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
             </CardContent>
           </Card>
         </TabsContent>

@@ -17,7 +17,7 @@ export default function ContactRoadmapPage() {
         </CardHeader>
         <CardContent>
           <ScrollArea className="h-[600px] w-full rounded-md border p-4">
-            <div className="relative min-w-[1200px] h-[800px]">
+            <div className="relative min-w-[1200px] h-[800px] flex-shrink-0">
               <Image
                 src="/contact%20roadmap.png"
                 alt="Organizational Chart"
