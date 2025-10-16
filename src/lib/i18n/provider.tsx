@@ -25,15 +25,19 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState('en');
 
   useEffect(() => {
-    const storedLang = localStorage.getItem('nmmt-lang');
-    if (storedLang && translations[storedLang]) {
+    const storedLang = localStorage.getItem('nmmt-lang') || 'en';
+    if (translations[storedLang]) {
       setLanguage(storedLang);
+      document.documentElement.lang = storedLang;
+      document.documentElement.dir = storedLang === 'ur' ? 'rtl' : 'ltr';
     }
   }, []);
 
   const setAndStoreLanguage = (lang: string) => {
     setLanguage(lang);
     localStorage.setItem('nmmt-lang', lang);
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ur' ? 'rtl' : 'ltr';
   };
   
   const t = (key: string, values?: Record<string, string | number>): string => {
@@ -67,9 +71,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage: setAndStoreLanguage, t }}>
-      <div lang={language} dir={language === 'ur' ? 'rtl' : 'ltr'}>
-        {children}
-      </div>
+      {children}
     </LanguageContext.Provider>
   );
 }

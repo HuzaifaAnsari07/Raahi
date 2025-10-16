@@ -20,7 +20,7 @@ import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
 import { Separator } from '@/components/ui/separator';
-import type { Route as RouteType } from '@/lib/types';
+import type { Route as RouteType, Bus as BusType } from '@/lib/types';
 
 export default function DashboardPage() {
   const { t } = useTranslation();
@@ -41,13 +41,13 @@ export default function DashboardPage() {
   };
 
   const favoriteRoutes = busRoutes.filter(route => favorites.includes(route.id));
-  
+
   // Find the next available bus for each favorite route
   const favoriteBuses = favoriteRoutes
     .map(route => {
       return buses.find(bus => bus.routeId === route.id);
     })
-    .filter((bus): bus is NonNullable<typeof bus> => bus !== undefined);
+    .filter((bus): bus is BusType => bus !== undefined);
 
 
   return (
@@ -62,7 +62,7 @@ export default function DashboardPage() {
               Your daily routes, just a click away.
             </p>
           </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {favoriteBuses.map((bus) => {
               const route = busRoutes.find((r) => r.id === bus.routeId);
               if (!route) return null;
@@ -126,7 +126,7 @@ export default function DashboardPage() {
           {t('dashboard.description')}
         </p>
       </div>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {buses.map((bus) => {
           const route = busRoutes.find((r) => r.id === bus.routeId);
           if (!route) return null;
