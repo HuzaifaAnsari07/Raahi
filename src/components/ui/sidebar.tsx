@@ -1,3 +1,4 @@
+
 "use client"
 
 import * as React from "react"
@@ -18,6 +19,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { useLanguageDirection } from "@/lib/i18n/provider"
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
@@ -166,7 +168,7 @@ const Sidebar = React.forwardRef<
 >(
   (
     {
-      side = "left",
+      side: sideProp = "left",
       variant = "sidebar",
       collapsible = "offcanvas",
       className,
@@ -176,6 +178,8 @@ const Sidebar = React.forwardRef<
     ref
   ) => {
     const { isMobile, state, openMobile, setOpenMobile } = useSidebar()
+    const { direction } = useLanguageDirection();
+    const side = direction === 'rtl' ? 'right' : sideProp;
 
     if (collapsible === "none") {
       return (
@@ -321,12 +325,15 @@ const SidebarInset = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"main">
 >(({ className, ...props }, ref) => {
+  const { direction } = useLanguageDirection();
+
   return (
     <main
       ref={ref}
       className={cn(
         "relative flex min-h-svh flex-1 flex-col bg-background",
         "peer-data-[variant=inset]:min-h-[calc(100svh-theme(spacing.4))] md:peer-data-[variant=inset]:m-2 md:peer-data-[state=collapsed]:peer-data-[variant=inset]:ml-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow",
+         direction === 'rtl' ? 'md:peer-data-[variant=inset]:mr-0' : 'md:peer-data-[variant=inset]:ml-0',
         className
       )}
       {...props}
@@ -558,6 +565,7 @@ const SidebarMenuButton = React.forwardRef<
   ) => {
     const Comp = asChild ? Slot : "button"
     const { isMobile, state } = useSidebar()
+    const { direction } = useLanguageDirection();
 
     const button = (
       <Comp
@@ -584,7 +592,7 @@ const SidebarMenuButton = React.forwardRef<
       <Tooltip>
         <TooltipTrigger asChild>{button}</TooltipTrigger>
         <TooltipContent
-          side="right"
+          side={direction === 'rtl' ? 'left' : 'right'}
           align="center"
           hidden={state !== "collapsed" || isMobile}
           {...tooltip}

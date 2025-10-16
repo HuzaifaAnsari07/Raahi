@@ -1,7 +1,7 @@
 
 'use client';
 
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useContext } from 'react';
 import en from './locales/en.json';
 import hi from './locales/hi.json';
 import mr from './locales/mr.json';
@@ -38,6 +38,8 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem('nmmt-lang', lang);
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === 'ur' ? 'rtl' : 'ltr';
+    // Force a re-render to apply direction changes
+    window.dispatchEvent(new Event('language-change'));
   };
   
   const t = (key: string, values?: Record<string, string | number>): string => {
@@ -75,3 +77,42 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     </LanguageContext.Provider>
   );
 }
+
+// Direction Provider
+type DirectionContextType = {
+  direction: 'ltr' | 'rtl';
+};
+
+const LanguageDirectionContext = createContext<DirectionContextType>({ direction: 'ltr' });
+
+export const LanguageDirectionProvider = ({ children }: { children: React.ReactNode }) => {
+  const [direction, setDirection] = useState<'ltr' | 'rtl'>('ltr');
+
+  useEffect(() => {
+    const updateDirection = () => {
+      const dir = document.documentElement.dir as 'ltr' | 'rtl' || 'ltr';
+      setDirection(dir);
+    };
+
+    updateDirection(); // Set initial direction
+
+    window.addEventListener('language-change', updateDirection);
+
+    // Also use a mutation observer for more robust detection
+    const observer = new MutationObserver(updateDirection);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['dir'] });
+
+    return () => {
+      window.removeEventListener('language-change', updateDirection);
+      observer.disconnect();
+    };
+  }, []);
+  
+  return (
+    <LanguageDirectionContext.Provider value={{ direction }}>
+      {children}
+    </LanguageDirectionContext.Provider>
+  );
+};
+
+export const useLanguageDirection = () => useContext(LanguageDirectionContext);

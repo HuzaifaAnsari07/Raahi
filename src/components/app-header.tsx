@@ -18,9 +18,12 @@ import Image from 'next/image';
 import LanguageSwitcher from './language-switcher';
 import { useTranslation } from '@/lib/i18n/use-translation';
 import { ThemeSwitcher } from './theme-switcher';
+import { useLanguageDirection } from '@/lib/i18n/provider';
 
 export default function AppHeader() {
   const { t } = useTranslation();
+  const { direction } = useLanguageDirection();
+
   return (
     <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background/80 px-4 backdrop-blur-sm md:px-6">
       <div className="flex items-center gap-2">
@@ -52,7 +55,7 @@ export default function AppHeader() {
               </Avatar>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56" align="end" forceMount>
+          <DropdownMenuContent className="w-56" align={direction === 'rtl' ? 'start' : 'end'} forceMount>
             <DropdownMenuLabel className="font-normal">
               <div className="flex flex-col space-y-1">
                 <p className="text-sm font-medium leading-none">Passenger</p>
