@@ -62,7 +62,7 @@ export default function DashboardPage() {
               Your daily routes, just a click away.
             </p>
           </div>
-          <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {favoriteBuses.map((bus) => {
               const route = busRoutes.find((r) => r.id === bus.routeId);
               if (!route) return null;
@@ -103,7 +103,7 @@ export default function DashboardPage() {
                       </div>
                     <OccupancyPredictor bus={bus} route={route} />
                   </CardContent>
-                  <CardFooter className="grid grid-cols-2 gap-2">
+                  <CardFooter className="flex flex-col gap-2 sm:grid sm:grid-cols-2">
                     <Button asChild variant="outline">
                       <Link href={`/track/${bus.id}`}>{t('dashboard.track_button')}</Link>
                     </Button>
@@ -126,7 +126,7 @@ export default function DashboardPage() {
           {t('dashboard.description')}
         </p>
       </div>
-      <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {buses.map((bus) => {
           const route = busRoutes.find((r) => r.id === bus.routeId);
           if (!route) return null;
@@ -167,7 +167,7 @@ export default function DashboardPage() {
                   </div>
                 <OccupancyPredictor bus={bus} route={route} />
               </CardContent>
-              <CardFooter className="grid grid-cols-2 gap-2">
+              <CardFooter className="flex flex-col gap-2 sm:grid sm:grid-cols-2">
                 <Button asChild variant="outline">
                   <Link href={`/track/${bus.id}`}>{t('dashboard.track_button')}</Link>
                 </Button>
