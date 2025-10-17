@@ -46,7 +46,8 @@
     "description": "اپنی بس تلاش کریں اور اسے حقیقی وقت میں ٹریک کریں۔",
     "departs_at": "روانگی کا وقت",
     "track_button": "ٹریک کریں",
-    "book_ticket_button": "ٹکٹ بک کریں"
+    "book_ticket_button": "ٹکٹ بک کریں",
+    "search_placeholder": "روٹ کے نام یا بس نمبر سے تلاش کریں..."
   },
   "track_bus": {
     "on_time": "وقت پر",

@@ -46,7 +46,8 @@
     "description": "Find your bus and track it in real-time.",
     "departs_at": "Departs at",
     "track_button": "Track",
-    "book_ticket_button": "Book Ticket"
+    "book_ticket_button": "Book Ticket",
+    "search_placeholder": "Search by route name or bus number..."
   },
   "track_bus": {
     "on_time": "On Time",

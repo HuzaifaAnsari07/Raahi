@@ -55,9 +55,12 @@ export default function DashboardPage() {
     if (!searchQuery) {
       return buses;
     }
+    const lowercasedQuery = searchQuery.toLowerCase();
     return buses.filter(bus => {
       const route = busRoutes.find(r => r.id === bus.routeId);
-      return route?.name.toLowerCase().includes(searchQuery.toLowerCase());
+      const routeNameMatch = route?.name.toLowerCase().includes(lowercasedQuery);
+      const busNumberMatch = bus.busNumber.toLowerCase().includes(lowercasedQuery);
+      return routeNameMatch || busNumberMatch;
     });
   }, [searchQuery]);
 
@@ -143,7 +146,7 @@ export default function DashboardPage() {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
             type="search"
-            placeholder="Search by route name..."
+            placeholder={t('dashboard.search_placeholder')}
             className="w-full pl-9"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}

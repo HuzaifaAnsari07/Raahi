@@ -46,7 +46,8 @@
     "description": "तुमची बस शोधा आणि तिला रिअल-टाइममध्ये ट्रॅक करा.",
     "departs_at": "येथे निघते",
     "track_button": "ट्रॅक करा",
-    "book_ticket_button": "तिकीट बुक करा"
+    "book_ticket_button": "तिकीट बुक करा",
+    "search_placeholder": "मार्गाचे नाव किंवा बस क्रमांकाने शोधा..."
   },
   "track_bus": {
     "on_time": "वेळेवर",
