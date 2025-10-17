@@ -16,14 +16,23 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useTranslation } from '@/lib/i18n/use-translation';
+import { useToast } from '@/hooks/use-toast';
+import { Download } from 'lucide-react';
 
 export default function LoginForm() {
   const router = useRouter();
   const { t } = useTranslation();
+  const { toast } = useToast();
 
   const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     router.push('/dashboard');
+  };
+  
+  const handleDownloadClick = () => {
+    toast({
+      title: 'App Coming Soon',
+    });
   };
 
   return (
@@ -66,6 +75,10 @@ export default function LoginForm() {
             </div>
           </CardContent>
           <CardFooter className="flex flex-col gap-4">
+             <Button variant="outline" className="w-full" onClick={handleDownloadClick} type="button">
+                <Download className="mr-2 h-4 w-4" />
+                Download App
+            </Button>
             <Button type="submit" className="w-full">
                 {t('login.signin_button')}
             </Button>
