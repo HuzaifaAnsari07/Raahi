@@ -12,20 +12,22 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { buses, busRoutes } from '@/lib/data';
-import { ArrowRight, Bus, Clock, Star } from 'lucide-react';
+import { ArrowRight, Bus, Clock, Search, Star } from 'lucide-react';
 import Link from 'next/link';
 import OccupancyPredictor from '@/components/occupancy-predictor';
 import { useTranslation } from '@/lib/i18n/use-translation';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
 import { Separator } from '@/components/ui/separator';
 import type { Route as RouteType, Bus as BusType } from '@/lib/types';
+import { Input } from '@/components/ui/input';
 
 export default function DashboardPage() {
   const { t } = useTranslation();
   const { toast } = useToast();
   const [favorites, setFavorites] = useState<string[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const toggleFavorite = (routeId: string) => {
     setFavorites(prevFavorites => {
@@ -48,6 +50,16 @@ export default function DashboardPage() {
       return buses.find(bus => bus.routeId === route.id);
     })
     .filter((bus): bus is BusType => bus !== undefined);
+
+  const filteredBuses = useMemo(() => {
+    if (!searchQuery) {
+      return buses;
+    }
+    return buses.filter(bus => {
+      const route = busRoutes.find(r => r.id === bus.routeId);
+      return route?.name.toLowerCase().includes(searchQuery.toLowerCase());
+    });
+  }, [searchQuery]);
 
 
   return (
@@ -120,14 +132,26 @@ export default function DashboardPage() {
       )}
 
 
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">{t('dashboard.title')}</h1>
-        <p className="text-muted-foreground">
-          {t('dashboard.description')}
-        </p>
+      <div className="space-y-4">
+        <div>
+            <h1 className="text-3xl font-bold tracking-tight">{t('dashboard.title')}</h1>
+            <p className="text-muted-foreground">
+            {t('dashboard.description')}
+            </p>
+        </div>
+        <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+            type="search"
+            placeholder="Search by route name..."
+            className="w-full pl-9"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            />
+        </div>
       </div>
       <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {buses.map((bus) => {
+        {filteredBuses.map((bus) => {
           const route = busRoutes.find((r) => r.id === bus.routeId);
           if (!route) return null;
 
